@@ -45,6 +45,8 @@ export function AnimatedButton({
   size = "default",
   className,
   href,
+  type = "button",
+  disabled = false,
   onClick,
 }: AnimatedButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
