@@ -13,13 +13,14 @@ interface AnimatedButtonProps {
 
 type Dir = "left" | "right" | "top" | "bottom";
 
-// Fully-clipped starting inset for each entry direction — the fill grows from
-// the edge the cursor entered, so it is hidden until hover reveals it.
-const startClip: Record<Dir, string> = {
-  left: "inset(0% 100% 0% 0%)",
-  right: "inset(0% 0% 0% 100%)",
-  top: "inset(0% 0% 100% 0%)",
-  bottom: "inset(100% 0% 0% 0%)",
+// Which axis grows and where the fill anchors for each cursor-entry direction.
+// The fill is a plain rectangle; the button's `overflow-hidden rounded-full`
+// clips it to the pill shape, so the moving edge stays clean and straight.
+const originFor: Record<Dir, string> = {
+  left: "left center",
+  right: "right center",
+  top: "center top",
+  bottom: "center bottom",
 };
 
 function entryDir(e: React.MouseEvent, rect: DOMRect): Dir {
@@ -89,20 +90,22 @@ export function AnimatedButton({
     lg: "px-8 py-4 text-base",
   };
 
+  const isHorizontal = dir === "left" || dir === "right";
+
   const content = (
     <>
       <motion.span
         className={cn(
-          "pointer-events-none absolute inset-0 rounded-full",
+          "pointer-events-none absolute inset-0",
           variant === "primary" && "bg-accent",
           variant === "secondary" && "bg-foreground",
           variant === "outline" && "bg-foreground",
         )}
+        style={{ transformOrigin: originFor[dir] }}
         initial={false}
         animate={{
-          clipPath: hovered
-            ? "inset(0% 0% 0% 0%)"
-            : startClip[dir],
+          scaleX: isHorizontal ? (hovered ? 1 : 0) : 1,
+          scaleY: isHorizontal ? 1 : (hovered ? 1 : 0),
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
