@@ -11,6 +11,31 @@ interface AnimatedButtonProps {
   onClick?: () => void;
 }
 
+type Dir = "left" | "right" | "top" | "bottom";
+
+// Fully-clipped starting inset for each entry direction — the fill grows from
+// the edge the cursor entered, so it is hidden until hover reveals it.
+const startClip: Record<Dir, string> = {
+  left: "inset(0% 100% 0% 0%)",
+  right: "inset(0% 0% 0% 100%)",
+  top: "inset(0% 0% 100% 0%)",
+  bottom: "inset(100% 0% 0% 0%)",
+};
+
+function entryDir(e: React.MouseEvent, rect: DOMRect): Dir {
+  const relX = (e.clientX - rect.left) / rect.width;
+  const relY = (e.clientY - rect.top) / rect.height;
+  const fromLeft = relX;
+  const fromRight = 1 - relX;
+  const fromTop = relY;
+  const fromBottom = 1 - relY;
+  const min = Math.min(fromLeft, fromRight, fromTop, fromBottom);
+  if (min === fromLeft) return "left";
+  if (min === fromRight) return "right";
+  if (min === fromTop) return "top";
+  return "bottom";
+}
+
 export function AnimatedButton({
   children,
   variant = "primary",
@@ -22,6 +47,13 @@ export function AnimatedButton({
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
+  const [dir, setDir] = useState<Dir>("left");
+
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    const el = ref.current;
+    if (el) setDir(entryDir(e, el.getBoundingClientRect()));
+    setHovered(true);
+  };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const el = ref.current;
@@ -29,9 +61,7 @@ export function AnimatedButton({
     const rect = el.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    const distanceX = e.clientX - centerX;
-    const distanceY = e.clientY - centerY;
-    setPosition({ x: distanceX * 0.15, y: distanceY * 0.15 });
+    setPosition({ x: (e.clientX - centerX) * 0.15, y: (e.clientY - centerY) * 0.15 });
   };
 
   const handleMouseLeave = () => {
@@ -68,8 +98,12 @@ export function AnimatedButton({
           variant === "secondary" && "bg-foreground",
           variant === "outline" && "bg-foreground",
         )}
-        initial={{ y: "100%" }}
-        animate={{ y: hovered ? "0%" : "100%" }}
+        initial={false}
+        animate={{
+          clipPath: hovered
+            ? "inset(0% 0% 0% 0%)"
+            : startClip[dir],
+        }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
       <span className="relative z-10 flex items-center gap-2">{children}</span>
@@ -78,7 +112,7 @@ export function AnimatedButton({
 
   const sharedProps = {
     onMouseMove: handleMouseMove,
-    onMouseEnter: () => setHovered(true),
+    onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
     animate: { x: position.x, y: position.y },
     whileHover: { scale: 1.03 },
