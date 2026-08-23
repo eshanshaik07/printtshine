@@ -55,6 +55,7 @@ export function AnimatedButton({
   const [dir, setDir] = useState<Dir>("left");
 
   const handleMouseEnter = (e: React.MouseEvent) => {
+    if (disabled) return;
     const el = ref.current;
     if (el) setDir(entryDir(e, el.getBoundingClientRect()));
     setHovered(true);
