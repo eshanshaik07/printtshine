@@ -4,10 +4,12 @@ import { type ReactNode, useRef, useState } from "react";
 
 interface AnimatedButtonProps {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "inverse";
   size?: "default" | "lg";
   className?: string;
   href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
   onClick?: () => void;
 }
 
