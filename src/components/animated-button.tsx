@@ -109,6 +109,7 @@ export function AnimatedButton({
           variant === "primary" && "bg-accent",
           variant === "secondary" && "bg-foreground",
           variant === "outline" && "bg-foreground",
+          variant === "inverse" && "bg-primary",
         )}
         style={{ transformOrigin: originFor[dir] }}
         initial={false}
