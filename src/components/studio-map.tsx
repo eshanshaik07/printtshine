@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Layers, Maximize2, MapPin, Search } from "lucide-react";
+import { ArrowUpRight, Layers, Maximize2, MapPin } from "lucide-react";
 
 interface StudioMapProps {
   address: string;
