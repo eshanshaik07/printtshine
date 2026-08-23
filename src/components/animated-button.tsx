@@ -21,6 +21,7 @@ export function AnimatedButton({
 }: AnimatedButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const el = ref.current;
@@ -35,18 +36,22 @@ export function AnimatedButton({
 
   const handleMouseLeave = () => {
     setPosition({ x: 0, y: 0 });
+    setHovered(false);
   };
 
   const baseStyles =
-    "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-display font-medium tracking-tight transition-colors duration-200 [transition-delay:150ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+    "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-display font-medium tracking-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
+  // Fill + text use complementary tokens that flip per theme, so contrast holds
+  // in both light and dark mode:
+  //   fill = the theme's foreground (ink), text = the theme's background (paper).
   const variants = {
     primary:
       "bg-primary text-primary-foreground hover:text-accent-foreground",
     secondary:
       "bg-secondary text-secondary-foreground hover:text-background",
     outline:
-      "border border-foreground/20 bg-transparent text-foreground hover:border-primary-foreground hover:text-primary-foreground",
+      "border border-foreground/20 bg-transparent text-foreground hover:border-foreground hover:text-background",
   };
 
   const sizes = {
@@ -61,10 +66,10 @@ export function AnimatedButton({
           "pointer-events-none absolute inset-0 rounded-full",
           variant === "primary" && "bg-accent",
           variant === "secondary" && "bg-foreground",
-          variant === "outline" && "bg-primary"
+          variant === "outline" && "bg-foreground",
         )}
         initial={{ y: "100%" }}
-        whileHover={{ y: "0%" }}
+        animate={{ y: hovered ? "0%" : "100%" }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
       <span className="relative z-10 flex items-center gap-2">{children}</span>
@@ -73,6 +78,7 @@ export function AnimatedButton({
 
   const sharedProps = {
     onMouseMove: handleMouseMove,
+    onMouseEnter: () => setHovered(true),
     onMouseLeave: handleMouseLeave,
     animate: { x: position.x, y: position.y },
     whileHover: { scale: 1.03 },
