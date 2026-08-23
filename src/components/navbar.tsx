@@ -41,7 +41,7 @@ export function Navbar() {
           )}
         >
           <Link to="/" className="font-display text-lg font-semibold tracking-tight text-foreground md:text-xl">
-            Nova Creative
+            printShine
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
@@ -90,7 +90,7 @@ export function Navbar() {
             <div className="flex h-full flex-col px-6 py-6">
               <div className="flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-4 py-3 shadow-lg backdrop-blur-xl">
                 <span className="font-display text-lg font-semibold tracking-tight text-foreground md:text-xl">
-                  Nova Creative
+                  printShine
                 </span>
                 <button
                   onClick={() => setMobileOpen(false)}

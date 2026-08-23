@@ -4,17 +4,17 @@ import { About } from "@/sections/about";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Nova Creative" },
+      { title: "About — printShine" },
       {
         name: "description",
         content:
-          "Nova Creative is a minimalist design studio built on restraint, craft, and clarity. Meet the studio behind the work.",
+          "printShine is a minimalist design studio built on restraint, craft, and clarity. Meet the studio behind the work.",
       },
-      { property: "og:title", content: "About — Nova Creative" },
+      { property: "og:title", content: "About — printShine" },
       {
         property: "og:description",
         content:
-          "Nova Creative is a minimalist design studio built on restraint, craft, and clarity.",
+          "printShine is a minimalist design studio built on restraint, craft, and clarity.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

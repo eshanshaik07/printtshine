@@ -101,7 +101,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground"
           >
-            Nova Creative crafts minimalist brands, identities, and digital
+            printShine crafts minimalist brands, identities, and digital
             experiences for founders who value clarity over noise.
           </motion.p>
 

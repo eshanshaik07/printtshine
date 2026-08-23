@@ -14,7 +14,7 @@ const PHONE_DISPLAY = "+91 92912 61143";
 const PHONE_HREF = "tel:+919291261143";
 const WHATSAPP_NUMBER = "919291261143";
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hi Nova Creative, we are interested in making a project with you."
+  "Hi printShine, we are interested in making a project with you."
 );
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 const ADDRESS =

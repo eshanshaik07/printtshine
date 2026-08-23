@@ -18,7 +18,7 @@ export function Footer() {
             href="/"
             className="font-display text-xl font-semibold tracking-tight text-foreground"
           >
-            Nova Creative
+            printShine
           </a>
           <p className="mt-2 text-sm text-muted-foreground">
             Minimalist graphic design studio.
@@ -41,7 +41,7 @@ export function Footer() {
 
       <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8">
         <p className="text-xs text-muted-foreground">
-          © {year} Nova Creative. All rights reserved.
+          © {year} printShine. All rights reserved.
         </p>
       </div>
     </footer>
