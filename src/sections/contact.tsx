@@ -4,9 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Loader2, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Loader2, MessageCircle, Phone } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import { AnimatedButton } from "@/components/animated-button";
+import { StudioMap } from "@/components/studio-map";
 import { submitContact } from "@/lib/contact.functions";
 
 const PHONE_DISPLAY = "+91 92912 61143";
@@ -18,7 +19,7 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 const ADDRESS =
   "Cheeriyal Village, Near Post Office, Keesara Mandal, Hyderabad, Telangana";
-const MAP_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+
 
 const contactSchema = z.object({
   name: z
@@ -60,17 +61,8 @@ const contactCards = [
     hoverBorder: "hover:border-emerald-500/40",
     iconColor: "group-hover:text-emerald-400",
   },
-  {
-    href: MAP_HREF,
-    icon: MapPin,
-    label: "Visit the studio",
-    value: ADDRESS,
-    external: true,
-    hoverBg: "hover:bg-amber-500/10",
-    hoverBorder: "hover:border-amber-400/40",
-    iconColor: "group-hover:text-amber-400",
-  },
 ];
+
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
@@ -127,18 +119,18 @@ export function Contact() {
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-12 space-y-4">
+            <div className="mt-12 grid gap-4 sm:grid-cols-2">
               {contactCards.map((card, i) => (
                 <motion.a
                   key={card.label}
                   href={card.href}
                   target={card.external ? "_blank" : undefined}
                   rel={card.external ? "noopener noreferrer" : undefined}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ x: 6 }}
+                  whileHover={{ y: -4 }}
                   className={`group flex items-start gap-4 rounded-2xl border border-primary-foreground/15 p-5 transition-colors duration-300 ${card.hoverBg} ${card.hoverBorder}`}
                 >
                   <motion.div
@@ -160,6 +152,11 @@ export function Contact() {
                 </motion.a>
               ))}
             </div>
+
+            <div className="mt-6">
+              <StudioMap address={ADDRESS} label="Secunderabad, Telangana, India" />
+            </div>
+
           </FadeIn>
         </div>
 
