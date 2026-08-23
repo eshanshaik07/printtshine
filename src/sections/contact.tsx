@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Loader2, MapPin, MessageCircle, Phone } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
+import { AnimatedButton } from "@/components/animated-button";
 import { submitContact } from "@/lib/contact.functions";
 
 const PHONE_DISPLAY = "+91 92912 61143";
