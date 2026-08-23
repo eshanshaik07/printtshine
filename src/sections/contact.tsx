@@ -227,19 +227,13 @@ export function Contact() {
               )}
             </motion.div>
 
-            <motion.button
+            <AnimatedButton
               type="submit"
+              variant="inverse"
+              size="lg"
               disabled={submitting}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full border border-primary bg-primary-foreground px-8 py-4 text-sm font-medium text-primary transition-colors duration-200 [transition-delay:150ms] hover:border-primary-foreground hover:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-70"
+              className="w-full"
             >
-              <motion.span
-                className="absolute inset-0 bg-primary"
-                initial={{ y: "100%" }}
-                whileHover={{ y: "0%" }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              />
               {submitting ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -247,11 +241,11 @@ export function Contact() {
                 </>
               ) : (
                 <>
-                  <span className="relative z-10">Send message</span>
-                  <ArrowUpRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  Send message
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </>
               )}
-            </motion.button>
+            </AnimatedButton>
           </form>
         </FadeIn>
       </div>
