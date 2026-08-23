@@ -105,18 +105,6 @@ export function StudioMap({ address, label }: StudioMapProps) {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Search bar */}
-      <form onSubmit={onSearch} className="relative">
-        <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-primary-foreground/40" />
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search locations..."
-          aria-label="Search locations"
-          className="w-full rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 py-3 pl-11 pr-4 text-sm text-primary-foreground placeholder:text-primary-foreground/40 outline-none transition-all duration-300 focus:border-primary-foreground/60 focus:bg-primary-foreground/10"
-        />
-      </form>
     </div>
   );
 }
