@@ -26,15 +26,6 @@ export function StudioMap({ address, label }: StudioMapProps) {
     else el.requestFullscreen?.();
   };
 
-  const onSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const next = query.trim();
-    if (next) {
-      setActive(next);
-      setShowCard(true);
-    }
-  };
-
   return (
     <div className="space-y-3">
       <div
