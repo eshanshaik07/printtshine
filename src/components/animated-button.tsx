@@ -62,6 +62,7 @@ export function AnimatedButton({
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (disabled) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -71,6 +72,7 @@ export function AnimatedButton({
   };
 
   const handleMouseLeave = () => {
+    if (disabled) return;
     setPosition({ x: 0, y: 0 });
     setHovered(false);
   };
