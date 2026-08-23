@@ -127,10 +127,16 @@ export function AnimatedButton({
     onMouseMove: handleMouseMove,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
-    animate: { x: position.x, y: position.y },
-    whileHover: { scale: 1.03 },
-    whileTap: { scale: 0.97 },
-    className: cn(baseStyles, variants[variant], sizes[size], className),
+    animate: disabled ? undefined : { x: position.x, y: position.y },
+    whileHover: disabled ? undefined : { scale: 1.03 },
+    whileTap: disabled ? undefined : { scale: 0.97 },
+    className: cn(
+      baseStyles,
+      variants[variant],
+      sizes[size],
+      disabled && "cursor-not-allowed opacity-70",
+      className,
+    ),
   };
 
   if (href) {
