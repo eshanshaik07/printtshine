@@ -4,10 +4,12 @@ import { type ReactNode, useRef, useState } from "react";
 
 interface AnimatedButtonProps {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "inverse";
   size?: "default" | "lg";
   className?: string;
   href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
   onClick?: () => void;
 }
 
@@ -43,6 +45,8 @@ export function AnimatedButton({
   size = "default",
   className,
   href,
+  type = "button",
+  disabled = false,
   onClick,
 }: AnimatedButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
@@ -51,12 +55,14 @@ export function AnimatedButton({
   const [dir, setDir] = useState<Dir>("left");
 
   const handleMouseEnter = (e: React.MouseEvent) => {
+    if (disabled) return;
     const el = ref.current;
     if (el) setDir(entryDir(e, el.getBoundingClientRect()));
     setHovered(true);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (disabled) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -66,6 +72,7 @@ export function AnimatedButton({
   };
 
   const handleMouseLeave = () => {
+    if (disabled) return;
     setPosition({ x: 0, y: 0 });
     setHovered(false);
   };
@@ -83,6 +90,8 @@ export function AnimatedButton({
       "bg-secondary text-secondary-foreground hover:text-background",
     outline:
       "border border-foreground/20 bg-transparent text-foreground hover:border-foreground hover:text-background",
+    inverse:
+      "border border-primary bg-primary-foreground text-primary hover:border-primary-foreground hover:text-primary-foreground",
   };
 
   const sizes = {
@@ -100,6 +109,7 @@ export function AnimatedButton({
           variant === "primary" && "bg-accent",
           variant === "secondary" && "bg-foreground",
           variant === "outline" && "bg-foreground",
+          variant === "inverse" && "bg-primary",
         )}
         style={{ transformOrigin: originFor[dir] }}
         initial={false}
@@ -117,10 +127,16 @@ export function AnimatedButton({
     onMouseMove: handleMouseMove,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
-    animate: { x: position.x, y: position.y },
-    whileHover: { scale: 1.03 },
-    whileTap: { scale: 0.97 },
-    className: cn(baseStyles, variants[variant], sizes[size], className),
+    ...(disabled ? {} : { animate: { x: position.x, y: position.y } }),
+    ...(disabled ? {} : { whileHover: { scale: 1.03 } }),
+    ...(disabled ? {} : { whileTap: { scale: 0.97 } }),
+    className: cn(
+      baseStyles,
+      variants[variant],
+      sizes[size],
+      disabled && "cursor-not-allowed opacity-70",
+      className,
+    ),
   };
 
   if (href) {
@@ -139,6 +155,8 @@ export function AnimatedButton({
   return (
     <motion.button
       ref={ref as React.RefObject<HTMLButtonElement>}
+      type={type}
+      disabled={disabled}
       onClick={onClick}
       {...sharedProps}
       transition={{ type: "spring" as const, stiffness: 200, damping: 15, mass: 0.5 }}
