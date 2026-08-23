@@ -60,17 +60,8 @@ const contactCards = [
     hoverBorder: "hover:border-emerald-500/40",
     iconColor: "group-hover:text-emerald-400",
   },
-  {
-    href: MAP_HREF,
-    icon: MapPin,
-    label: "Visit the studio",
-    value: ADDRESS,
-    external: true,
-    hoverBg: "hover:bg-amber-500/10",
-    hoverBorder: "hover:border-amber-400/40",
-    iconColor: "group-hover:text-amber-400",
-  },
 ];
+
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
