@@ -155,6 +155,8 @@ export function AnimatedButton({
   return (
     <motion.button
       ref={ref as React.RefObject<HTMLButtonElement>}
+      type={type}
+      disabled={disabled}
       onClick={onClick}
       {...sharedProps}
       transition={{ type: "spring" as const, stiffness: 200, damping: 15, mass: 0.5 }}
