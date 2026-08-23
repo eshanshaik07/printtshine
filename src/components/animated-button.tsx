@@ -127,9 +127,9 @@ export function AnimatedButton({
     onMouseMove: handleMouseMove,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
-    animate: disabled ? undefined : { x: position.x, y: position.y },
-    whileHover: disabled ? undefined : { scale: 1.03 },
-    whileTap: disabled ? undefined : { scale: 0.97 },
+    ...(disabled ? {} : { animate: { x: position.x, y: position.y } }),
+    ...(disabled ? {} : { whileHover: { scale: 1.03 } }),
+    ...(disabled ? {} : { whileTap: { scale: 0.97 } }),
     className: cn(
       baseStyles,
       variants[variant],
