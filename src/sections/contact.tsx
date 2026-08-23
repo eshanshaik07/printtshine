@@ -18,7 +18,7 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
 );
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 const ADDRESS =
-  "Cheeriyal Village, Near Post Office, Keesara Mandal, Hyderabad, Telangana";
+  "Cheeriyal Village, Rose Gardens, Keesara Mandal, Hyderabad, Telangana";
 
 
 const contactSchema = z.object({
