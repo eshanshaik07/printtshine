@@ -10,8 +10,7 @@ interface StudioMapProps {
 export function StudioMap({ address, label }: StudioMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [satellite, setSatellite] = useState(false);
-  const [query, setQuery] = useState("");
-  const [active, setActive] = useState(address);
+  const active = address;
   const [showCard, setShowCard] = useState(true);
 
   const embedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(active)}&z=15&t=${
