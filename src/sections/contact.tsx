@@ -232,7 +232,7 @@ export function Contact() {
               variant="inverse"
               size="lg"
               disabled={submitting}
-              className="w-full"
+              className="group w-full"
             >
               {submitting ? (
                 <>
