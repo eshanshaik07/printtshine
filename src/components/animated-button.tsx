@@ -90,6 +90,8 @@ export function AnimatedButton({
       "bg-secondary text-secondary-foreground hover:text-background",
     outline:
       "border border-foreground/20 bg-transparent text-foreground hover:border-foreground hover:text-background",
+    inverse:
+      "border border-primary bg-primary-foreground text-primary hover:border-primary-foreground hover:text-primary-foreground",
   };
 
   const sizes = {
