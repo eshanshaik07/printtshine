@@ -81,14 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nova Creative — Graphic Design Studio" },
-      { name: "description", content: "Nova Creative is a minimalist graphic design studio crafting brands, identities, and digital experiences with intention." },
-      { name: "author", content: "Nova Creative" },
-      { property: "og:title", content: "Nova Creative — Graphic Design Studio" },
-      { property: "og:description", content: "Nova Creative is a minimalist graphic design studio crafting brands, identities, and digital experiences with intention." },
+      { title: "printShine — Graphic Design Studio" },
+      { name: "description", content: "printShine is a minimalist graphic design studio crafting brands, identities, and digital experiences with intention." },
+      { name: "author", content: "printShine" },
+      { property: "og:title", content: "printShine — Graphic Design Studio" },
+      { property: "og:description", content: "printShine is a minimalist graphic design studio crafting brands, identities, and digital experiences with intention." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@novacreative" },
+      { name: "twitter:site", content: "@printShine" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -110,7 +110,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const themeScript = `(function(){try{var t=localStorage.getItem('nova-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem('printshine-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 function RootShell({ children }: { children: ReactNode }) {
   return (

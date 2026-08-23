@@ -22,7 +22,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     setTheme(next);
     document.documentElement.classList.toggle("dark", next === "dark");
     try {
-      localStorage.setItem("nova-theme", next);
+      localStorage.setItem("printshine-theme", next);
     } catch {
       /* storage unavailable */
     }

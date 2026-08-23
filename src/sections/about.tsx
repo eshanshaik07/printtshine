@@ -15,7 +15,7 @@ export function About() {
         <div className="grid gap-16 lg:grid-cols-12">
           <FadeIn className="lg:col-span-5">
             <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-              About Nova
+              About printShine
             </span>
             <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
               Less noise.
@@ -28,7 +28,7 @@ export function About() {
             <FadeIn delay={0.1}>
               <p className="text-xl leading-relaxed text-foreground lg:text-2xl">
                 We believe the best design disappears. It doesn't shout — it
-                guides, reassures, and leaves a lasting impression. Nova Creative
+                guides, reassures, and leaves a lasting impression. printShine
                 partners with ambitious teams to build visual systems that feel
                 inevitable.
               </p>
