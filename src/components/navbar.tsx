@@ -19,6 +19,7 @@ const MotionLink = motion.create(Link);
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const preloaderDone = usePreloaderDone();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
