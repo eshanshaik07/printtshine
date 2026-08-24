@@ -115,8 +115,7 @@ export function Contact() {
 
           <FadeIn delay={0.15}>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-primary-foreground/70">
-              Tell us what you're building. We'll respond within two business days
-              with next steps and a clear path forward.
+              Tell us what you're building. We usually reply the same day.
             </p>
           </FadeIn>
 
