@@ -240,9 +240,6 @@ export function Contact() {
                 </>
               )}
             </AnimatedButton>
-            <p className="pt-1 text-center text-xs text-primary-foreground/40">
-              We typically reply within 2 business days.
-            </p>
           </form>
 
         </FadeIn>
