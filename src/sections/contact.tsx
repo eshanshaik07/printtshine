@@ -115,8 +115,7 @@ export function Contact() {
 
           <FadeIn delay={0.15}>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-primary-foreground/70">
-              Tell us what you're building. We'll respond within two business days
-              with next steps and a clear path forward.
+              Tell us what you're building. We usually reply the same day.
             </p>
           </FadeIn>
 
@@ -241,9 +240,6 @@ export function Contact() {
                 </>
               )}
             </AnimatedButton>
-            <p className="pt-1 text-center text-xs text-primary-foreground/40">
-              We typically reply within 2 business days.
-            </p>
           </form>
 
         </FadeIn>
