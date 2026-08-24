@@ -106,7 +106,7 @@ export function Contact() {
             <span className="text-xs font-medium uppercase tracking-widest text-primary-foreground/60">
               Start a project
             </span>
-            <h2 className="mt-6 font-display text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="mt-6 font-display text-4xl font-medium tracking-tight sm:text-5xl lg:text-5xl">
               Let's make something
               <br />
               worth remembering.
