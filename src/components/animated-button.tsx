@@ -133,9 +133,14 @@ export function AnimatedButton({
   );
 
   const sharedProps = {
-    onMouseMove: handleMouseMove,
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
+    onPointerMove: handlePointerMove,
+    onPointerEnter: handlePointerEnter,
+    onPointerLeave: handlePointerLeave,
+    onPointerCancel: reset,
+    onPointerUp: (e: React.PointerEvent) => {
+      if (!isFinePointer(e)) reset();
+    },
+    onBlur: reset,
     ...(disabled ? {} : { animate: { x: position.x, y: position.y } }),
     ...(disabled ? {} : { whileHover: { scale: 1.03 } }),
     ...(disabled ? {} : { whileTap: { scale: 0.97 } }),
