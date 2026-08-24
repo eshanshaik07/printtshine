@@ -98,7 +98,9 @@ export function Contact() {
       id="contact"
       className="bg-primary px-6 py-32 text-primary-foreground transition-colors duration-500 lg:px-8"
     >
-      <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2 lg:gap-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+
         <div>
           <FadeIn>
             <span className="text-xs font-medium uppercase tracking-widest text-primary-foreground/60">
@@ -131,20 +133,20 @@ export function Contact() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -4 }}
-                  className={`group flex items-start gap-4 rounded-2xl border border-primary-foreground/15 p-5 transition-colors duration-300 ${card.hoverBg} ${card.hoverBorder}`}
+                  className={`group flex items-center gap-4 rounded-2xl border border-primary-foreground/15 p-6 transition-colors duration-300 ${card.hoverBg} ${card.hoverBorder}`}
                 >
                   <motion.div
-                    className="mt-0.5 shrink-0"
+                    className="shrink-0"
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <card.icon className={`h-5 w-5 text-primary-foreground/60 transition-colors duration-300 ${card.iconColor}`} />
+                    <card.icon className={`h-6 w-6 text-primary-foreground/60 transition-colors duration-300 ${card.iconColor}`} />
                   </motion.div>
                   <span className="flex-1">
-                    <span className="block text-xs uppercase tracking-widest text-primary-foreground/50">
+                    <span className="block text-[0.65rem] uppercase tracking-widest text-primary-foreground/50">
                       {card.label}
                     </span>
-                    <span className="mt-1 block text-base font-medium leading-snug">
+                    <span className="mt-1 block text-lg font-medium leading-snug">
                       {card.value}
                     </span>
                   </span>
@@ -152,12 +154,8 @@ export function Contact() {
                 </motion.a>
               ))}
             </div>
-
-            <div className="mt-6">
-              <StudioMap address={ADDRESS} label="Secunderabad, Telangana, India" />
-            </div>
-
           </FadeIn>
+
         </div>
 
         <FadeIn delay={0.2}>
@@ -245,7 +243,15 @@ export function Contact() {
             </AnimatedButton>
           </form>
         </FadeIn>
+        </div>
+
+        <FadeIn delay={0.3}>
+          <div className="mt-12 lg:mt-16">
+            <StudioMap address={ADDRESS} label="Secunderabad, Telangana, India" />
+          </div>
+        </FadeIn>
       </div>
     </section>
+
   );
 }
