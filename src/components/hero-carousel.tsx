@@ -84,17 +84,18 @@ export function HeroCarousel({ slides, interval = 4500 }: { slides: Slide[]; int
       <button
         onClick={() => go(index - 1, -1)}
         aria-label="Previous image"
-        className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/80 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-background focus-visible:opacity-100 group-hover:opacity-100"
+        className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background focus-visible:opacity-100 md:opacity-0 md:group-hover:opacity-100"
       >
         <ChevronLeft className="h-4 w-4 text-foreground" />
       </button>
       <button
         onClick={() => go(index + 1, 1)}
         aria-label="Next image"
-        className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/80 opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-background focus-visible:opacity-100 group-hover:opacity-100"
+        className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background focus-visible:opacity-100 md:opacity-0 md:group-hover:opacity-100"
       >
         <ChevronRight className="h-4 w-4 text-foreground" />
       </button>
+
     </div>
   );
 }
