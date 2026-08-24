@@ -248,8 +248,8 @@ export function Contact() {
         <FadeIn delay={0.3}>
           <div className="mt-12 lg:mt-16">
             <StudioMap
-              address="Sri Bhavani Sri Pochamma Thalli Temple, Cheeriyal, Keesara, Hyderabad, Telangana"
-              label="Rose Gardens printShine"
+              address="Rose Gardens, Cheeriyal Village, Keesara, Hyderabad, Telangana"
+              label="Rose Gardens, Cheeriyal Village"
             />
           </div>
         </FadeIn>
