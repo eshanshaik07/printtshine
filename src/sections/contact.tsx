@@ -251,7 +251,7 @@ export function Contact() {
 
         <FadeIn delay={0.3}>
           <div className="mt-12 lg:mt-16">
-            <StudioMap address={ADDRESS} label="Secunderabad, Telangana, India" />
+            <StudioMap address="Rose Gardens, Cheeriyal Village, Keesara Mandal, Hyderabad, Telangana" label={ADDRESS} />
           </div>
         </FadeIn>
       </div>
