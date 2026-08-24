@@ -41,7 +41,14 @@ export function Navbar() {
           )}
         >
           <Link to="/" className="font-display text-lg font-semibold tracking-tight text-foreground md:text-xl">
-            printShine
+            <motion.span
+              initial={false}
+              animate={{ opacity: preloaderDone ? 1 : 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-block"
+            >
+              printShine
+            </motion.span>
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
