@@ -133,14 +133,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="relative min-h-screen bg-background">
-        <FloatingShapes />
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </main>
-      <Toaster position="bottom-right" />
-      <ScrollToTop />
+      <Preloader>
+        <main className="relative min-h-screen bg-background">
+          <FloatingShapes />
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </main>
+        <Toaster position="bottom-right" />
+        <ScrollToTop />
+      </Preloader>
     </QueryClientProvider>
   );
 }
