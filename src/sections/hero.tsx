@@ -41,18 +41,18 @@ export function Hero() {
     <section className="relative flex min-h-screen items-center overflow-hidden px-6 pt-20 lg:px-8">
       {/* Decorative floating shapes */}
       <FloatingElement
-        className="absolute left-[10%] top-[20%] hidden h-24 w-24 rounded-full border border-border/60 lg:block"
+        className="absolute left-[10%] top-[20%] hidden h-24 w-24 rounded-full border border-foreground/20 dark:border-foreground/30 lg:block"
         duration={6}
         distance={20}
       />
       <FloatingElement
-        className="absolute bottom-[25%] right-[8%] hidden h-16 w-16 rounded-full bg-secondary lg:block"
+        className="absolute bottom-[25%] right-[8%] hidden h-16 w-16 rounded-full bg-foreground/[0.08] dark:bg-foreground/[0.15] lg:block"
         duration={5}
         distance={16}
         delay={0.5}
       />
       <FloatingElement
-        className="absolute right-[25%] top-[15%] hidden h-3 w-3 rounded-full bg-foreground/20 lg:block"
+        className="absolute right-[25%] top-[15%] hidden h-3 w-3 rounded-full bg-foreground/25 dark:bg-foreground/45 lg:block"
         duration={4}
         distance={10}
         delay={1}

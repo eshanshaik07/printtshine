@@ -14,6 +14,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/sections/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { FloatingShapes } from "@/components/floating-shapes";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -132,7 +133,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="min-h-screen bg-background">
+      <main className="relative min-h-screen bg-background">
+        <FloatingShapes />
         <Navbar />
         <Outlet />
         <Footer />
