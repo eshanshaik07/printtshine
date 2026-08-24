@@ -5,6 +5,7 @@ import { Link } from "@tanstack/react-router";
 import { AnimatedButton } from "./animated-button";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
+import { usePreloaderDone } from "./preloader";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -19,6 +20,7 @@ const MotionLink = motion.create(Link);
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const preloaderDone = usePreloaderDone();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -41,7 +43,14 @@ export function Navbar() {
           )}
         >
           <Link to="/" className="font-display text-lg font-semibold tracking-tight text-foreground md:text-xl">
-            printShine
+            <motion.span
+              initial={false}
+              animate={{ opacity: preloaderDone ? 1 : 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-block"
+            >
+              printShine
+            </motion.span>
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">

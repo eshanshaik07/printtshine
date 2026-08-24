@@ -15,6 +15,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/sections/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { FloatingShapes } from "@/components/floating-shapes";
+import { Preloader } from "@/components/preloader";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -133,14 +134,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="relative min-h-screen bg-background">
-        <FloatingShapes />
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </main>
-      <Toaster position="bottom-right" />
-      <ScrollToTop />
+      <Preloader>
+        <main className="relative min-h-screen bg-background">
+          <FloatingShapes />
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </main>
+        <Toaster position="bottom-right" />
+        <ScrollToTop />
+      </Preloader>
     </QueryClientProvider>
   );
 }
