@@ -54,15 +54,25 @@ export function AnimatedButton({
   const [hovered, setHovered] = useState(false);
   const [dir, setDir] = useState<Dir>("left");
 
-  const handleMouseEnter = (e: React.MouseEvent) => {
-    if (disabled) return;
+  // Touch devices fire synthetic mouseenter on tap and never a matching
+  // mouseleave, which leaves the fill + hover text colour stuck after
+  // navigating back. Only react to real pointer (mouse) input.
+  const isFinePointer = (e: React.PointerEvent) => e.pointerType === "mouse";
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+    setHovered(false);
+  };
+
+  const handlePointerEnter = (e: React.PointerEvent) => {
+    if (disabled || !isFinePointer(e)) return;
     const el = ref.current;
     if (el) setDir(entryDir(e, el.getBoundingClientRect()));
     setHovered(true);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (disabled) return;
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (disabled || !isFinePointer(e)) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -71,10 +81,9 @@ export function AnimatedButton({
     setPosition({ x: (e.clientX - centerX) * 0.15, y: (e.clientY - centerY) * 0.15 });
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerLeave = () => {
     if (disabled) return;
-    setPosition({ x: 0, y: 0 });
-    setHovered(false);
+    reset();
   };
 
   const baseStyles =
@@ -124,9 +133,14 @@ export function AnimatedButton({
   );
 
   const sharedProps = {
-    onMouseMove: handleMouseMove,
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
+    onPointerMove: handlePointerMove,
+    onPointerEnter: handlePointerEnter,
+    onPointerLeave: handlePointerLeave,
+    onPointerCancel: reset,
+    onPointerUp: (e: React.PointerEvent) => {
+      if (!isFinePointer(e)) reset();
+    },
+    onBlur: reset,
     ...(disabled ? {} : { animate: { x: position.x, y: position.y } }),
     ...(disabled ? {} : { whileHover: { scale: 1.03 } }),
     ...(disabled ? {} : { whileTap: { scale: 0.97 } }),
