@@ -132,7 +132,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="min-h-screen bg-background">
+      <main className="relative min-h-screen bg-background">
+        <FloatingShapes />
         <Navbar />
         <Outlet />
         <Footer />
