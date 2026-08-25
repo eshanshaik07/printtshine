@@ -144,6 +144,7 @@ function RootComponent() {
         </main>
         <Toaster position="bottom-right" />
         <ScrollToTop />
+        <RouteLoader />
       </Preloader>
     </QueryClientProvider>
   );
