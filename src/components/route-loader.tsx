@@ -44,7 +44,7 @@ export function RouteLoader() {
             <motion.svg
               viewBox="0 0 100 100"
               className="absolute inset-0 h-full w-full text-foreground"
-              animate={reduceMotion ? undefined : { rotate: 360 }}
+              animate={reduceMotion ? {} : { rotate: 360 }}
               transition={{ duration: 1.4, ease: "linear", repeat: Infinity }}
             >
               <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.12" />
@@ -63,7 +63,7 @@ export function RouteLoader() {
             {/* flipping logo */}
             <motion.div
               className="h-12 w-12 [transform-style:preserve-3d]"
-              animate={reduceMotion ? undefined : { rotateY: [0, 180, 360] }}
+              animate={reduceMotion ? {} : { rotateY: [0, 180, 360] }}
               transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], repeat: Infinity }}
             >
               <BrandMark />
