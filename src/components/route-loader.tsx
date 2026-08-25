@@ -1,22 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useRouterState } from "@tanstack/react-router";
 
-import { BrandMark } from "./brand-mark";
+import logoAsset from "@/assets/printshine-logo.png.asset.json";
+
+const MIN_DISPLAY_MS = 1500;
 
 /** Full-screen loading screen shown while navigating between pages. */
 export function RouteLoader() {
   const reduceMotion = useReducedMotion();
   const isLoading = useRouterState({ select: (s) => s.status === "pending" });
   const [visible, setVisible] = useState(false);
+  const startTimeRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (isLoading) {
+      // Clear any pending hide and show the loader, recording when it appeared.
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      startTimeRef.current = Date.now();
       setVisible(true);
       return;
     }
-    const t = setTimeout(() => setVisible(false), 350);
-    return () => clearTimeout(t);
+
+    // Navigation finished — enforce the minimum display time.
+    const elapsed = startTimeRef.current ? Date.now() - startTimeRef.current : MIN_DISPLAY_MS;
+    const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
+
+    timeoutRef.current = setTimeout(() => {
+      setVisible(false);
+      startTimeRef.current = null;
+    }, remaining);
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [isLoading]);
 
   useEffect(() => {
@@ -66,7 +89,11 @@ export function RouteLoader() {
               animate={reduceMotion ? {} : { rotateY: [0, 180, 360] }}
               transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], repeat: Infinity }}
             >
-              <BrandMark />
+              <img
+                src={logoAsset.url}
+                alt="printShine"
+                className="h-full w-full object-contain dark:invert dark:brightness-200"
+              />
             </motion.div>
           </div>
         </motion.div>
