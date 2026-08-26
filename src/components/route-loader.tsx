@@ -85,7 +85,7 @@ export function RouteLoader() {
 
             {/* flipping logo */}
             <motion.div
-              className="h-16 w-16 [transform-style:preserve-3d]"
+              className="h-20 w-20 [transform-style:preserve-3d]"
               animate={reduceMotion ? {} : { rotateY: [0, 180, 360] }}
               transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], repeat: Infinity }}
             >
