@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useRouterState } from "@tanstack/react-router";
 
-import boxIconAsset from "@/assets/printshine-box-icon.png.asset.json";
+import markAsset from "@/assets/printshine-mark.png.asset.json";
 
 const MIN_DISPLAY_MS = 1500;
 
@@ -85,13 +85,13 @@ export function RouteLoader() {
 
             {/* flipping logo */}
             <motion.div
-              className="h-16 w-16 [transform-style:preserve-3d]"
+              className="h-20 w-20 [transform-style:preserve-3d]"
               animate={reduceMotion ? {} : { rotateY: [0, 180, 360] }}
               transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], repeat: Infinity }}
             >
               <img
-                src={boxIconAsset.url}
-                alt="printShine box icon"
+                src={markAsset.url}
+                alt="printShine logo mark"
                 className="h-full w-full object-contain dark:invert dark:brightness-200"
               />
             </motion.div>
