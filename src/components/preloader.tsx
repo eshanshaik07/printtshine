@@ -51,14 +51,14 @@ export function Preloader({ children }: { children: ReactNode }) {
             <div className="relative flex flex-col items-center justify-center overflow-hidden px-4">
               {/* scroll/zoom mask */}
               <div className="overflow-hidden">
-                <motion.span
-                  initial={{ y: "120%", scale: 1.5, opacity: 0 }}
-                  animate={{ y: "0%", scale: 1, opacity: 1 }}
+                <motion.div
+                  initial={{ y: 80, scale: 1.5, opacity: 0 }}
+                  animate={{ y: 0, scale: 1, opacity: 1 }}
                   transition={{ duration: 1, ease: EASE }}
-                  className="block font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
+                  className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
                 >
                   {brand}
-                </motion.span>
+                </motion.div>
               </div>
 
               {/* trailing shine line */}
