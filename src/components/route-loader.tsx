@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useRouterState } from "@tanstack/react-router";
 
-import boxIconAsset from "@/assets/printshine-box-icon.png.asset.json";
+import markAsset from "@/assets/printshine-mark.png.asset.json";
 
 const MIN_DISPLAY_MS = 1500;
 
@@ -90,8 +90,8 @@ export function RouteLoader() {
               transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], repeat: Infinity }}
             >
               <img
-                src={boxIconAsset.url}
-                alt="printShine box icon"
+                src={markAsset.url}
+                alt="printShine logo mark"
                 className="h-full w-full object-contain dark:invert dark:brightness-200"
               />
             </motion.div>
