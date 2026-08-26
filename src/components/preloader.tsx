@@ -46,7 +46,7 @@ export function Preloader({ children }: { children: ReactNode }) {
             initial={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.9, ease: EASE }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-red-500"
           >
             <div className="relative flex flex-col items-center justify-center overflow-hidden px-4">
               {/* scroll/zoom mask */}
@@ -55,7 +55,7 @@ export function Preloader({ children }: { children: ReactNode }) {
                   initial={{ y: "120%", scale: 1.5, opacity: 0 }}
                   animate={{ y: "0%", scale: 1, opacity: 1 }}
                   transition={{ duration: 1, ease: EASE }}
-                  className="block font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl"
+                  className="block font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
                 >
                   {brand}
                 </motion.span>
@@ -66,7 +66,7 @@ export function Preloader({ children }: { children: ReactNode }) {
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
                 transition={{ duration: 0.8, ease: EASE, delay: 0.8 }}
-                className="mt-4 h-px w-24 origin-center bg-foreground/30"
+                className="mt-4 h-px w-24 origin-center bg-white/50"
               />
             </div>
           </motion.div>
