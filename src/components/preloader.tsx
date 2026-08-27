@@ -21,7 +21,7 @@ export function Preloader({ children }: { children: ReactNode }) {
       setDone(true);
       return;
     }
-    const t = setTimeout(() => setActive(false), 2200);
+    const t = setTimeout(() => setActive(false), 1750);
     return () => clearTimeout(t);
   }, [reduceMotion]);
 
@@ -34,8 +34,6 @@ export function Preloader({ children }: { children: ReactNode }) {
     };
   }, [active]);
 
-  const brand = "printShine";
-
   return (
     <PreloaderContext.Provider value={done}>
       {children}
@@ -46,29 +44,18 @@ export function Preloader({ children }: { children: ReactNode }) {
             initial={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.9, ease: EASE }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-red-500"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
           >
-            <div className="relative flex flex-col items-center justify-center overflow-hidden px-4">
-              {/* scroll/zoom mask */}
-              <div className="overflow-hidden">
-                <motion.div
-                  initial={{ y: 80, scale: 1.5, opacity: 0 }}
-                  animate={{ y: 0, scale: 1, opacity: 1 }}
-                  transition={{ duration: 1, ease: EASE }}
-                  className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
-                >
-                  {brand}
-                </motion.div>
-              </div>
-
-              {/* trailing shine line */}
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.8, ease: EASE, delay: 0.8 }}
-                className="mt-4 h-px w-24 origin-center bg-white/50"
-              />
-            </div>
+            <span className="overflow-hidden px-4">
+              <motion.span
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                transition={{ duration: 0.8, ease: EASE }}
+                className="block font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+              >
+                printShine
+              </motion.span>
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
