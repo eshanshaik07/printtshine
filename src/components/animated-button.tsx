@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { type ReactNode, useRef, useState } from "react";
+
+const MotionLink = motion.create(Link);
 
 interface AnimatedButtonProps {
   children: ReactNode;
