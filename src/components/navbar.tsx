@@ -6,6 +6,7 @@ import { AnimatedButton } from "./animated-button";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import { usePreloaderDone } from "./preloader";
+import { ScrambleText } from "./scramble-text";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -49,7 +50,7 @@ export function Navbar() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="inline-block"
             >
-              printShine
+              <ScrambleText text="printShine" />
             </motion.span>
           </Link>
 
