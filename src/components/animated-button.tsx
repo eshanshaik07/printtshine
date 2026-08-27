@@ -154,15 +154,18 @@ export function AnimatedButton({
   };
 
   if (href) {
+    const internal = href.startsWith("/");
+    const Comp = internal ? MotionLink : motion.a;
+    const linkProps = internal ? { to: href } : { href };
     return (
-      <motion.a
+      <Comp
         ref={ref as React.RefObject<HTMLAnchorElement>}
-        href={href}
+        {...(linkProps as never)}
         {...sharedProps}
         transition={{ type: "spring" as const, stiffness: 200, damping: 15, mass: 0.5 }}
       >
         {content}
-      </motion.a>
+      </Comp>
     );
   }
 
