@@ -21,7 +21,7 @@ export function Preloader({ children }: { children: ReactNode }) {
       setDone(true);
       return;
     }
-    const t = setTimeout(() => setActive(false), 1750);
+    const t = setTimeout(() => setActive(false), 2000);
     return () => clearTimeout(t);
   }, [reduceMotion]);
 
@@ -43,14 +43,14 @@ export function Preloader({ children }: { children: ReactNode }) {
             key="preloader"
             initial={{ y: 0 }}
             exit={{ y: "-100%" }}
-            transition={{ duration: 0.9, ease: EASE }}
+            transition={{ duration: 1, ease: EASE }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
           >
             <span className="overflow-hidden px-4">
               <motion.span
                 initial={{ y: "110%", opacity: 0 }}
                 animate={{ y: "0%", opacity: 1 }}
-                transition={{ duration: 0.8, ease: EASE }}
+                transition={{ duration: 0.85, ease: EASE }}
                 className="block font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
               >
                 printShine
