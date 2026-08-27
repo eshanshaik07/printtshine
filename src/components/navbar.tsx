@@ -6,6 +6,7 @@ import { AnimatedButton } from "./animated-button";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import { usePreloaderDone } from "./preloader";
+import { ScrambleText } from "./scramble-text";
 
 const navLinks = [
   { label: "Home", to: "/" },
