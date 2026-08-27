@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { type ReactNode, useRef, useState } from "react";
+
+const MotionLink = motion.create(Link);
 
 interface AnimatedButtonProps {
   children: ReactNode;
@@ -154,15 +157,18 @@ export function AnimatedButton({
   };
 
   if (href) {
+    const internal = href.startsWith("/");
+    const Comp = (internal ? MotionLink : motion.a) as React.ElementType;
+    const linkProps: Record<string, string> = internal ? { to: href } : { href };
     return (
-      <motion.a
+      <Comp
         ref={ref as React.RefObject<HTMLAnchorElement>}
-        href={href}
+        {...linkProps}
         {...sharedProps}
         transition={{ type: "spring" as const, stiffness: 200, damping: 15, mass: 0.5 }}
       >
         {content}
-      </motion.a>
+      </Comp>
     );
   }
 

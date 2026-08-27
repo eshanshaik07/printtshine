@@ -9,7 +9,15 @@ const MIN_DISPLAY_MS = 1500;
 /** Full-screen loading screen shown while navigating between pages. */
 export function RouteLoader() {
   const reduceMotion = useReducedMotion();
-  const isLoading = useRouterState({ select: (s) => s.status === "pending" });
+  const { pending, currentPath, nextPath } = useRouterState({
+    select: (s) => ({
+      pending: s.status === "pending",
+      currentPath: s.resolvedLocation?.pathname,
+      nextPath: s.location.pathname,
+    }),
+  });
+  // Don't show the loader when navigating to the page we're already on.
+  const isLoading = pending && currentPath !== nextPath;
   const [visible, setVisible] = useState(false);
   const startTimeRef = useRef<number | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
