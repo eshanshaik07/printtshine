@@ -61,15 +61,6 @@ const contactCards = [
     hoverBorder: "hover:border-emerald-500/40",
     iconColor: "group-hover:text-emerald-400",
   },
-  {
-    href: EMAIL_HREF,
-    icon: Mail,
-    label: "Mail us",
-    value: EMAIL_DISPLAY,
-    hoverBg: "hover:bg-rose-500/10",
-    hoverBorder: "hover:border-rose-400/40",
-    iconColor: "group-hover:text-rose-400",
-  },
 ];
 
 
@@ -129,7 +120,7 @@ export function Contact() {
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {contactCards.map((card, i) => (
                 <motion.a
                   key={card.label}
