@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Loader2, Mail, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Loader2, MessageCircle, Phone } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import { AnimatedButton } from "@/components/animated-button";
 import { StudioMap } from "@/components/studio-map";
@@ -17,8 +17,6 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hi printShine, we are interested in making a project with you."
 );
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
-const EMAIL_DISPLAY = "hello.printshine@gmail.com";
-const EMAIL_HREF = "mailto:hello.printshine@gmail.com";
 const ADDRESS =
   "Cheeriyal Village, Rose Gardens, Keesara Mandal, Hyderabad, Telangana";
 
@@ -62,15 +60,6 @@ const contactCards = [
     hoverBg: "hover:bg-emerald-500/10",
     hoverBorder: "hover:border-emerald-500/40",
     iconColor: "group-hover:text-emerald-400",
-  },
-  {
-    href: EMAIL_HREF,
-    icon: Mail,
-    label: "Mail us",
-    value: EMAIL_DISPLAY,
-    hoverBg: "hover:bg-rose-500/10",
-    hoverBorder: "hover:border-rose-400/40",
-    iconColor: "group-hover:text-rose-400",
   },
 ];
 
@@ -131,7 +120,7 @@ export function Contact() {
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {contactCards.map((card, i) => (
                 <motion.a
                   key={card.label}
