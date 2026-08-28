@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
@@ -12,8 +12,16 @@ interface ScrambleTextProps {
 export function ScrambleText({ text, className, as: Tag = "span" }: ScrambleTextProps) {
   const [display, setDisplay] = useState(text);
   const [isHovering, setIsHovering] = useState(false);
+  const [width, setWidth] = useState<number | undefined>(undefined);
   const frameRef = useRef<number | null>(null);
   const iterationRef = useRef(0);
+  const measureRef = useRef<HTMLSpanElement>(null);
+
+  useLayoutEffect(() => {
+    if (measureRef.current) {
+      setWidth(measureRef.current.getBoundingClientRect().width);
+    }
+  }, [text, className]);
 
   const scramble = useCallback(() => {
     const length = text.length;
@@ -57,14 +65,20 @@ export function ScrambleText({ text, className, as: Tag = "span" }: ScrambleText
   }, [isHovering, scramble, text]);
 
   return (
-    <Tag
-      className={cn("inline-block cursor-pointer whitespace-nowrap", className)}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-      onTouchStart={() => setIsHovering(true)}
-      onTouchEnd={() => setTimeout(() => setIsHovering(false), 800)}
-    >
-      {display}
-    </Tag>
+    <>
+      <span ref={measureRef} className={cn("invisible absolute whitespace-nowrap", className)} aria-hidden="true">
+        {text}
+      </span>
+      <Tag
+        className={cn("inline-block cursor-pointer whitespace-nowrap text-center", className)}
+        style={{ width: width ? `${width}px` : undefined }}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        onTouchStart={() => setIsHovering(true)}
+        onTouchEnd={() => setTimeout(() => setIsHovering(false), 800)}
+      >
+        {display}
+      </Tag>
+    </>
   );
 }
