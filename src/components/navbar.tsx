@@ -50,7 +50,7 @@ export function Navbar() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="inline-block"
             >
-              <ScrambleText text="printShine" />
+              <ScrambleText text="printShine" mode="typewriter" />
             </motion.span>
           </Link>
 
