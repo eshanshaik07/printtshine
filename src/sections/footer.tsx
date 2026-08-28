@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 
 const socials = [
-  { label: "Instagram", href: "#" },
+  { label: "Instagram", href: "https://instagram.com/hello.printshine" },
   { label: "Behance", href: "#" },
   { label: "Dribbble", href: "#" },
   { label: "LinkedIn", href: "#" },
