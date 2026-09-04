@@ -1,5 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
+import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
+import type { Database } from "@/integrations/supabase/types";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -10,7 +12,33 @@ const contactSchema = z.object({
 export const submitContact = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => contactSchema.parse(data))
   .handler(async ({ data }) => {
-    // Email delivery is wired up once a destination address + sender domain are set.
-    console.log("[contact] new submission from", data.email);
+    const url = process.env["SUPABASE_URL"]!;
+    const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
+
+    const supabase = createClient<Database>(url, key, {
+      auth: { persistSession: false, autoRefreshToken: false },
+      global: {
+        fetch: (input, init) => {
+          const h = new Headers(init?.headers);
+          if (key.startsWith("sb_") && h.get("Authorization") === `Bearer ${key}`) {
+            h.delete("Authorization");
+          }
+          h.set("apikey", key);
+          return fetch(input, { ...init, headers: h });
+        },
+      },
+    });
+
+    const { error } = await supabase.from("contact_messages").insert({
+      name: data.name,
+      email: data.email,
+      message: data.message,
+    });
+
+    if (error) {
+      console.error("[contact] failed to store submission", error.message);
+      throw new Error("Could not save your message");
+    }
+
     return { ok: true };
   });
