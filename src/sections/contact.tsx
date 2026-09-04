@@ -84,6 +84,8 @@ export function Contact() {
       await submitContact({ data: values });
       toast.success("Message sent — we usually reply the same day.");
       reset();
+      setSent(true);
+      setTimeout(() => setSent(false), 2500);
     } catch {
       toast.error("Something went wrong. Please try again or call us directly.");
     } finally {
