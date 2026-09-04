@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Loader2, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Check, Loader2, MessageCircle, Phone } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import { AnimatedButton } from "@/components/animated-button";
 import { StudioMap } from "@/components/studio-map";
@@ -66,6 +66,7 @@ const contactCards = [
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const {
     register,
@@ -83,6 +84,8 @@ export function Contact() {
       await submitContact({ data: values });
       toast.success("Message sent — we usually reply the same day.");
       reset();
+      setSent(true);
+      setTimeout(() => setSent(false), 2500);
     } catch {
       toast.error("Something went wrong. Please try again or call us directly.");
     } finally {
@@ -225,7 +228,7 @@ export function Contact() {
               type="submit"
               variant="inverse"
               size="lg"
-              disabled={submitting}
+              disabled={submitting || sent}
               className="group w-full"
             >
               {submitting ? (
@@ -233,6 +236,22 @@ export function Contact() {
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Sending
                 </>
+              ) : sent ? (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-2"
+                >
+                  <motion.span
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}
+                  >
+                    <Check className="h-4 w-4" />
+                  </motion.span>
+                  Message sent
+                </motion.span>
               ) : (
                 <>
                   Send message
