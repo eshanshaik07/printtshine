@@ -66,6 +66,7 @@ const contactCards = [
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const {
     register,
