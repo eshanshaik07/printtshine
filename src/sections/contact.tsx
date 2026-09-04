@@ -228,7 +228,7 @@ export function Contact() {
               type="submit"
               variant="inverse"
               size="lg"
-              disabled={submitting}
+              disabled={submitting || sent}
               className="group w-full"
             >
               {submitting ? (
@@ -236,6 +236,22 @@ export function Contact() {
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Sending
                 </>
+              ) : sent ? (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-2"
+                >
+                  <motion.span
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}
+                  >
+                    <Check className="h-4 w-4" />
+                  </motion.span>
+                  Message sent
+                </motion.span>
               ) : (
                 <>
                   Send message
