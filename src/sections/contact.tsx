@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Loader2, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Check, Loader2, MessageCircle, Phone } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import { AnimatedButton } from "@/components/animated-button";
 import { StudioMap } from "@/components/studio-map";
