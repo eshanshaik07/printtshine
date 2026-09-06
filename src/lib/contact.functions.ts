@@ -6,6 +6,7 @@ import type { Database } from "@/integrations/supabase/types";
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(255),
+  phone: z.string().trim().max(20).optional().or(z.literal("")),
   message: z.string().trim().min(10).max(2000),
 });
 
@@ -32,6 +33,7 @@ export const submitContact = createServerFn({ method: "POST" })
     const { error } = await supabase.from("contact_messages").insert({
       name: data.name,
       email: data.email,
+      phone: data.phone || null,
       message: data.message,
     });
 

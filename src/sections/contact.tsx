@@ -32,6 +32,12 @@ const contactSchema = z.object({
     .trim()
     .email({ message: "Enter a valid email address" })
     .max(255, { message: "Email must be under 255 characters" }),
+  phone: z
+    .string()
+    .trim()
+    .max(20, { message: "Phone number must be under 20 characters" })
+    .optional()
+    .or(z.literal("")),
   message: z
     .string()
     .trim()
@@ -75,7 +81,7 @@ export function Contact() {
     formState: { errors },
   } = useForm<ContactValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", message: "" },
   });
 
   const onSubmit = async (values: ContactValues) => {
@@ -162,8 +168,12 @@ export function Contact() {
 
         <FadeIn delay={0.2}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+            <h3 className="font-display text-2xl font-medium tracking-tight text-primary-foreground">
+              Request a Quote
+            </h3>
             {[
               { id: "name", label: "Name", type: "text", placeholder: "Your name" },
+              { id: "phone", label: "Phone number", type: "tel", placeholder: "Your phone number (optional)" },
               { id: "email", label: "Email", type: "email", placeholder: "you@company.com" },
             ].map((field) => (
               <motion.div
