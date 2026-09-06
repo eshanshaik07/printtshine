@@ -33,6 +33,7 @@ export const submitContact = createServerFn({ method: "POST" })
     const { error } = await supabase.from("contact_messages").insert({
       name: data.name,
       email: data.email,
+      phone: data.phone || null,
       message: data.message,
     });
 
