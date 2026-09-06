@@ -32,6 +32,12 @@ const contactSchema = z.object({
     .trim()
     .email({ message: "Enter a valid email address" })
     .max(255, { message: "Email must be under 255 characters" }),
+  phone: z
+    .string()
+    .trim()
+    .max(20, { message: "Phone number must be under 20 characters" })
+    .optional()
+    .or(z.literal("")),
   message: z
     .string()
     .trim()
