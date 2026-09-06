@@ -16,12 +16,8 @@ export function Preloader({ children }: { children: ReactNode }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (reduceMotion) {
-      setActive(false);
-      setDone(true);
-      return;
-    }
-    const t = setTimeout(() => setActive(false), 2000);
+    // Reduced motion still gets a brief static splash, just without movement.
+    const t = setTimeout(() => setActive(false), reduceMotion ? 600 : 2000);
     return () => clearTimeout(t);
   }, [reduceMotion]);
 
