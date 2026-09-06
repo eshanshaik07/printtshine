@@ -171,6 +171,11 @@ export function Contact() {
             <h3 className="font-display text-2xl font-medium tracking-tight text-primary-foreground">
               Request a Quote
             </h3>
+            <p className="text-sm leading-relaxed text-primary-foreground/70">
+              Thank You for reaching out! We would be happy to put together an
+              accurate proposal for you. Please share a few more details about
+              your requirements.
+            </p>
             {[
               { id: "name", label: "Name", type: "text", placeholder: "Your name" },
               { id: "phone", label: "Phone number", type: "tel", placeholder: "Your phone number (optional)" },
