@@ -168,8 +168,12 @@ export function Contact() {
 
         <FadeIn delay={0.2}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+            <h3 className="font-display text-2xl font-medium tracking-tight text-primary-foreground">
+              Request a Quote
+            </h3>
             {[
               { id: "name", label: "Name", type: "text", placeholder: "Your name" },
+              { id: "phone", label: "Phone number", type: "tel", placeholder: "Your phone number (optional)" },
               { id: "email", label: "Email", type: "email", placeholder: "you@company.com" },
             ].map((field) => (
               <motion.div
