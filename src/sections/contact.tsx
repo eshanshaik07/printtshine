@@ -81,7 +81,7 @@ export function Contact() {
     formState: { errors },
   } = useForm<ContactValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", message: "" },
   });
 
   const onSubmit = async (values: ContactValues) => {
