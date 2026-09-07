@@ -1,31 +1,37 @@
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/fade-in";
-import { Palette, Layout, PenTool, Monitor } from "lucide-react";
+import { Gift, Printer, PenTool, Share2, Code } from "lucide-react";
 
 const services = [
   {
-    icon: Palette,
-    title: "Brand Identity",
+    icon: Gift,
+    title: "Corporate Gifting",
     description:
-      "Distinctive logos, color systems, and visual language that make your brand instantly recognizable.",
+      "Curated branded merchandise and premium gift sets that leave a lasting impression.",
   },
   {
-    icon: Layout,
-    title: "Print & Editorial",
+    icon: Printer,
+    title: "Print Solutions",
     description:
-      "Business cards, packaging, publications, and marketing collateral designed with restraint.",
+      "High-quality business cards, brochures, packaging, and marketing collateral.",
   },
   {
     icon: PenTool,
-    title: "Illustration",
+    title: "Laser Cutting & Engraving",
     description:
-      "Custom illustrations and iconography that add character without clutter.",
+      "Precise custom cuts and engravings on acrylic, wood, metal, and more.",
   },
   {
-    icon: Monitor,
-    title: "Digital Design",
+    icon: Share2,
+    title: "Social Media Posts",
     description:
-      "Websites, social assets, and UI systems built for calm, confident user experiences.",
+      "Engaging graphics and content kits tailored for your brand's online presence.",
+  },
+  {
+    icon: Code,
+    title: "Front End Website Developer",
+    description:
+      "Clean, responsive websites and UI systems built for modern user experiences.",
   },
 ];
 
