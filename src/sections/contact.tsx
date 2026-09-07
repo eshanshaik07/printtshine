@@ -17,8 +17,7 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hi printShine, we are interested in making a project with you."
 );
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
-const ADDRESS =
-  "Cheeriyal Village, Rose Gardens, Keesara Mandal, Hyderabad, Telangana";
+const ADDRESS = "printShine, Cheeriyal, Keesara, Hyderabad, Telangana";
 
 
 const contactSchema = z.object({
@@ -282,8 +281,8 @@ export function Contact() {
         <FadeIn delay={0.3}>
           <div className="mt-12 lg:mt-16">
             <StudioMap
-              address="Rose Gardens, Cheeriyal Village, Keesara, Hyderabad, Telangana"
-              label="Rose Gardens, Cheeriyal Village"
+              address="printShine, Cheeriyal, Keesara, Hyderabad, Telangana"
+              label="printShine, Cheeriyal"
             />
           </div>
         </FadeIn>
