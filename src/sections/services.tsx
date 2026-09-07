@@ -59,7 +59,7 @@ export function Services() {
           </FadeIn>
         </div>
 
-        <div className="mt-20 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-20 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-5">
           {services.map((service, i) => (
             <FadeIn key={service.title} delay={i * 0.1}>
               <motion.div
