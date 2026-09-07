@@ -70,7 +70,7 @@ export function RouteLoader() {
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-[90] flex items-center justify-center bg-background"
         >
-          <div className="relative grid h-32 w-32 place-items-center">
+          <div className="relative grid h-24 w-24 place-items-center">
             {/* loading circle */}
             <motion.svg
               viewBox="0 0 100 100"
@@ -93,8 +93,8 @@ export function RouteLoader() {
 
             {/* flipping logo */}
             <motion.div
-              className="h-20 w-20 [transform-style:preserve-3d]"
-              animate={reduceMotion ? {} : { rotateY: [0, 180, 360] }}
+              className="h-12 w-12 [transform-style:preserve-3d]"
+              animate={{ rotateY: [0, 180, 360] }}
               transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], repeat: Infinity }}
             >
               <img
