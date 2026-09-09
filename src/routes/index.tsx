@@ -24,5 +24,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <Hero />;
+  return (
+    <>
+      <Hero />
+      <Capabilities />
+    </>
+  );
 }
