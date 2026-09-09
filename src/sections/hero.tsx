@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { RotatingLabel } from "@/components/rotating-label";
 import { AnimatedButton } from "@/components/animated-button";
 import { FloatingElement } from "@/components/floating-element";
 import { HeroCarousel, type Slide } from "@/components/hero-carousel";
@@ -71,7 +72,7 @@ export function Hero() {
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
-            Graphic Design Studio
+            <RotatingLabel />
           </motion.span>
 
           <div className="overflow-hidden">
