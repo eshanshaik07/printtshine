@@ -65,7 +65,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground"
+            className="mb-6 inline-flex w-fit origin-center items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground"
+            whileHover={{ scale: 1.05, rotate: 360 }}
+            transition={{ type: "spring", stiffness: 120, damping: 14 }}
           >
             <motion.span
               className="h-1.5 w-1.5 rounded-full bg-foreground"
