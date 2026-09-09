@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const offerings = [
   { label: "Office Needs", to: "/services" },
