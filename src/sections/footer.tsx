@@ -1,11 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 
-const socials = [
-  { label: "Instagram", href: "https://instagram.com/hello.printshine" },
-  { label: "Behance", href: "#" },
-  { label: "Dribbble", href: "#" },
-  { label: "LinkedIn", href: "#" },
-];
+const offerings = [
+  { label: "Office Needs", to: "/services" },
+  { label: "Customized Corporate Gifts", to: "/services" },
+  { label: "Web Designing", to: "/services" },
+] as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -26,15 +25,15 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap gap-6">
-          {socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
+          {offerings.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               className="group inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
-              {social.label}
+              {item.label}
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+            </Link>
           ))}
         </div>
       </div>
