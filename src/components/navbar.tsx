@@ -71,7 +71,7 @@ export function Navbar() {
           <div className="hidden items-center gap-3 md:flex">
             <ThemeToggle />
             <AnimatedButton href="/contact" size="default" variant="primary">
-              Start a project
+              Contact us
             </AnimatedButton>
           </div>
 
@@ -134,7 +134,7 @@ export function Navbar() {
                   variant="primary"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Start a project
+                  Contact us
                 </AnimatedButton>
               </div>
             </div>
