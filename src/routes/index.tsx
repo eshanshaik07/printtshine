@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/sections/hero";
+import { Capabilities } from "@/sections/capabilities";
 
 export const Route = createFileRoute("/")({
   head: () => ({
