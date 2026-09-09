@@ -72,7 +72,7 @@ export function Hero() {
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
-            Graphic Design Studio
+            <RotatingLabel />
           </motion.span>
 
           <div className="overflow-hidden">
