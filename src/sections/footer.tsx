@@ -1,5 +1,6 @@
 import { ArrowUpRight, Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import type { LucideIcon } from "lucide-react";
 
 const companyLinks = [
   { label: "Home", to: "/" },
@@ -19,7 +20,7 @@ const workLinks = [
   { label: "Portfolio", hash: "portfolio" },
 ] as const;
 
-const socialLinks = [
+const socialLinks: Array<{ label: string; icon: LucideIcon; href?: string }> = [
   {
     label: "Instagram",
     href: "https://instagram.com/hello.printshine",
@@ -32,7 +33,7 @@ const socialLinks = [
     href: "https://wa.me/919291261143",
     icon: MessageCircle,
   },
-] as const;
+];
 
 const footerLinkClass =
   "group inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground";
@@ -88,16 +89,17 @@ export function Footer() {
         </div>
 
         <FooterColumn title="Our Company">
-          {companyLinks.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              hash={"hash" in item ? item.hash : undefined}
-              className={footerLinkClass}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {companyLinks.map((item) =>
+            "hash" in item ? (
+              <Link key={item.label} to={item.to} hash={item.hash} className={footerLinkClass}>
+                {item.label}
+              </Link>
+            ) : (
+              <Link key={item.label} to={item.to} className={footerLinkClass}>
+                {item.label}
+              </Link>
+            ),
+          )}
         </FooterColumn>
 
         <FooterColumn title="Services">
