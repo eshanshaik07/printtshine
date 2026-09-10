@@ -8,13 +8,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "printShine is a minimalist design studio built on restraint, craft, and clarity. Meet the studio behind the work.",
+          "Meet printShine, where ideas become memorable brands, products, print, and digital experiences.",
       },
       { property: "og:title", content: "About — printShine" },
       {
         property: "og:description",
         content:
-          "printShine is a minimalist design studio built on restraint, craft, and clarity.",
+          "Meet printShine, where ideas become memorable brands, products, print, and digital experiences.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

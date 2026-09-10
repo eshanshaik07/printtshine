@@ -5,6 +5,7 @@ import { Gift, Printer, PenTool, Share2, Code, ArrowLeft } from "lucide-react";
 
 const services = [
   {
+    id: "corporate-gifting",
     icon: Gift,
     title: "Corporate Gifting",
     description:
@@ -19,6 +20,7 @@ const services = [
     ],
   },
   {
+    id: "print-solutions",
     icon: Printer,
     title: "Print Solutions",
     description:
@@ -33,6 +35,7 @@ const services = [
     ],
   },
   {
+    id: "laser-cutting-engraving",
     icon: PenTool,
     title: "Laser Cutting & Engraving",
     description:
@@ -47,6 +50,7 @@ const services = [
     ],
   },
   {
+    id: "social-media-posts",
     icon: Share2,
     title: "Social Media Posts",
     description:
@@ -61,6 +65,7 @@ const services = [
     ],
   },
   {
+    id: "front-end-website-development",
     icon: Code,
     title: "Front End Website Developer",
     description:
@@ -174,11 +179,12 @@ export function Services() {
                 {services.map((service, i) => (
                   <FadeIn key={service.title} delay={i * 0.1}>
                     <motion.button
+                      id={service.id}
                       type="button"
                       onClick={() => setActive(service.title)}
                       whileHover={{ y: -8 }}
                       transition={{ duration: 0.4, ease }}
-                      className="group h-full w-full cursor-pointer bg-background p-8 text-left transition-colors duration-500 hover:bg-secondary"
+                      className="group h-full w-full scroll-mt-32 cursor-pointer bg-background p-8 text-left transition-colors duration-500 hover:bg-secondary"
                     >
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}

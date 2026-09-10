@@ -103,7 +103,7 @@ export function Contact() {
 
   return (
     <section
-      id="contact"
+      id="contact-us"
       className="bg-primary px-6 py-32 text-primary-foreground transition-colors duration-500 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
@@ -112,7 +112,7 @@ export function Contact() {
         <div>
           <FadeIn>
             <span className="text-xs font-medium uppercase tracking-widest text-primary-foreground/60">
-              Start a project
+              Contact Us
             </span>
             <h2 className="mt-6 font-display text-4xl font-medium tracking-tight sm:text-5xl lg:text-5xl">
               Let's make something
@@ -160,6 +160,17 @@ export function Contact() {
                   <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-primary-foreground/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </motion.a>
               ))}
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.35}>
+            <div id="help-center" className="mt-8 scroll-mt-32 border-t border-primary-foreground/15 pt-6">
+              <h3 className="font-display text-lg font-medium text-primary-foreground">
+                Help Center
+              </h3>
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-primary-foreground/65">
+                Need help choosing a service or preparing your requirements? Call or WhatsApp us and we’ll guide you.
+              </p>
             </div>
           </FadeIn>
 
