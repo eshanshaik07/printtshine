@@ -102,8 +102,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground"
           >
-            printShine crafts minimalist brands, identities, and digital
-            experiences for founders who value clarity over noise.
+            PrintShine transforms ideas into memorable brands, products, print,
+            and digital experiences.
           </motion.p>
 
           <motion.div

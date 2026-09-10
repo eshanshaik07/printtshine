@@ -99,6 +99,10 @@
     scroll-behavior: smooth;
   }
 
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

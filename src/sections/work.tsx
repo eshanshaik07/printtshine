@@ -145,11 +145,11 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 
 export function Work() {
   return (
-    <section id="work" className="bg-secondary px-6 py-32 lg:px-8">
+    <section id="portfolio" className="scroll-mt-28 bg-secondary px-6 py-32 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <FadeIn>
+        <FadeIn className="scroll-mt-32" >
           <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Selected Work
+            <span id="previous-works" className="scroll-mt-32">Previous Works</span>
           </span>
           <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
             Projects with presence.

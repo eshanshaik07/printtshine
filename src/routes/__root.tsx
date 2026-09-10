@@ -17,6 +17,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { FloatingShapes } from "@/components/floating-shapes";
 import { Preloader } from "@/components/preloader";
 import { RouteLoader } from "@/components/route-loader";
+import { HashScroll } from "@/components/hash-scroll";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -84,11 +85,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "printShine — Graphic Design Studio" },
-      { name: "description", content: "printShine is a minimalist graphic design studio crafting brands, identities, and digital experiences with intention." },
+      { title: "printShine — Ideas Made. Brands Elevated." },
+      { name: "description", content: "PrintShine transforms ideas into memorable brands, products, print, and digital experiences." },
       { name: "author", content: "printShine" },
-      { property: "og:title", content: "printShine — Graphic Design Studio" },
-      { property: "og:description", content: "printShine is a minimalist graphic design studio crafting brands, identities, and digital experiences with intention." },
+      { property: "og:title", content: "printShine — Ideas Made. Brands Elevated." },
+      { property: "og:description", content: "PrintShine transforms ideas into memorable brands, products, print, and digital experiences." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@printShine" },
@@ -144,6 +145,7 @@ function RootComponent() {
         </main>
         <Toaster position="bottom-right" />
         <ScrollToTop />
+        <HashScroll />
         <RouteLoader />
       </Preloader>
     </QueryClientProvider>
