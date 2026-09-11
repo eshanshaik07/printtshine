@@ -38,6 +38,16 @@ const socialLinks: Array<{ label: string; icon: LucideIcon; href?: string }> = [
 const footerLinkClass =
   "group inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground";
 
+function scrollToSection(hash: string) {
+  return (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const element = document.getElementById(hash);
+    if (!element) return; // different page — let the router navigate
+    event.preventDefault();
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `#${hash}`);
+  };
+}
+
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -91,7 +101,7 @@ export function Footer() {
         <FooterColumn title="Our Company">
           {companyLinks.map((item) =>
             "hash" in item ? (
-              <Link key={item.label} to={item.to} hash={item.hash} className={footerLinkClass}>
+              <Link key={item.label} to={item.to} hash={item.hash} onClick={scrollToSection(item.hash)} className={footerLinkClass}>
                 {item.label}
               </Link>
             ) : (
@@ -104,7 +114,7 @@ export function Footer() {
 
         <FooterColumn title="Services">
           {serviceLinks.map((item) => (
-            <Link key={item.label} to="/services" hash={item.hash} className={footerLinkClass}>
+            <Link key={item.label} to="/services" hash={item.hash} onClick={scrollToSection(item.hash)} className={footerLinkClass}>
               {item.label}
             </Link>
           ))}
@@ -112,7 +122,7 @@ export function Footer() {
 
         <FooterColumn title="Works">
           {workLinks.map((item) => (
-            <Link key={item.label} to="/work" hash={item.hash} className={footerLinkClass}>
+            <Link key={item.label} to="/work" hash={item.hash} onClick={scrollToSection(item.hash)} className={footerLinkClass}>
               {item.label}
             </Link>
           ))}
@@ -122,11 +132,11 @@ export function Footer() {
           <p className="max-w-[15rem] text-sm leading-relaxed text-muted-foreground">
             Let&apos;s create something amazing together.
           </p>
-          <Link to="/contact" hash="contact-us" className={`${footerLinkClass} text-foreground`}>
+          <Link to="/contact" hash="contact-us" onClick={scrollToSection("contact-us")} className={`${footerLinkClass} text-foreground`}>
             Contact Us
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
-          <Link to="/contact" hash="help-center" className={footerLinkClass}>
+          <Link to="/contact" hash="help-center" onClick={scrollToSection("help-center")} className={footerLinkClass}>
             Help Center
           </Link>
         </FooterColumn>
