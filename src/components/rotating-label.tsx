@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 
 const labels = [
   "Graphic Design Studio",
-  "Corporate Gifting Studio",
-  "Laser & Engraving Studio",
+  "Corporate Gifting",
+  "Laser & Engraving",
   "Web Developer Studio",
 ];
 
@@ -14,7 +14,7 @@ export function RotatingLabel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % labels.length);
-    }, 1000);
+    }, 1900);
     return () => clearInterval(interval);
   }, []);
 
