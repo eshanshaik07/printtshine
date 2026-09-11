@@ -3,22 +3,22 @@ import { RotatingLabel } from "@/components/rotating-label";
 import { AnimatedButton } from "@/components/animated-button";
 import { FloatingElement } from "@/components/floating-element";
 import { HeroCarousel, type Slide } from "@/components/hero-carousel";
-import heroImage from "@/assets/nova-hero.jpg";
-import heroImage2 from "@/assets/nova-hero-2.jpg";
+import brandingIdentityAsset from "@/assets/printshine-branding-identity.png.asset.json";
+import craftProductsAsset from "@/assets/printshine-wood-acrylic-crafts.png.asset.json";
 import heroImage3 from "@/assets/nova-hero-3.jpg";
 import heroImage4 from "@/assets/nova-hero-4.jpg";
 import heroImage5 from "@/assets/nova-hero-5.jpg";
 
 const slides: Slide[] = [
   {
-    src: heroImage,
-    alt: "Abstract minimalist composition with warm paper texture and ink shapes",
-    caption: "Est. 2023",
+    src: brandingIdentityAsset.url,
+    alt: "PrintShine branding identity applied across apparel, stationery, drinkware, technology accessories and promotional products",
+    caption: "Branding Identity",
   },
   {
-    src: heroImage2,
-    alt: "Bold black ink circle and terracotta dot on warm paper",
-    caption: "Brand identity",
+    src: craftProductsAsset.url,
+    alt: "Custom-made wooden and acrylic craft products including awards, games, keychains and floral decorations",
+    caption: "Custom-Made Wooden & Acrylic Craft Products",
   },
   {
     src: heroImage3,
