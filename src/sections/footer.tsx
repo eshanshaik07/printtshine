@@ -38,6 +38,16 @@ const socialLinks: Array<{ label: string; icon: LucideIcon; href?: string }> = [
 const footerLinkClass =
   "group inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground";
 
+function scrollToSection(hash: string) {
+  return (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const element = document.getElementById(hash);
+    if (!element) return; // different page — let the router navigate
+    event.preventDefault();
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `#${hash}`);
+  };
+}
+
 export function Footer() {
   const year = new Date().getFullYear();
 
