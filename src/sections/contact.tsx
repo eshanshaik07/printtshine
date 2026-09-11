@@ -72,6 +72,7 @@ const contactCards = [
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [flipped, setFlipped] = useState<string | null>(null);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const {
     register,
@@ -109,10 +110,10 @@ export function Contact() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
 
-        <div>
+        <div id="help-center" className="scroll-mt-32">
           <FadeIn>
             <span className="text-xs font-medium uppercase tracking-widest text-primary-foreground/60">
-              Contact Us
+              Contact Us &amp; Help Center
             </span>
             <h2 className="mt-6 font-display text-4xl font-medium tracking-tight sm:text-5xl lg:text-5xl">
               Let's make something
@@ -125,52 +126,76 @@ export function Contact() {
             <p className="mt-8 max-w-md text-lg leading-relaxed text-primary-foreground/70">
               Tell us what you're building. We usually reply the same day.
             </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/65">
+              Need help choosing a service or preparing your requirements? Call
+              or WhatsApp us and we’ll guide you.
+            </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {contactCards.map((card, i) => (
-                <motion.a
-                  key={card.label}
-                  href={card.href}
-                  target={card.external ? "_blank" : undefined}
-                  rel={card.external ? "noopener noreferrer" : undefined}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -4 }}
-                  className={`group flex items-center gap-4 rounded-2xl border border-primary-foreground/15 p-6 transition-colors duration-300 ${card.hoverBg} ${card.hoverBorder}`}
-                >
+              {contactCards.map((card, i) => {
+                const isFlipped = flipped === card.label;
+                return (
                   <motion.div
-                    className="shrink-0"
-                    whileHover={{ rotate: 10, scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
+                    key={card.label}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="[perspective:1200px]"
                   >
-                    <card.icon className={`h-6 w-6 text-primary-foreground/60 transition-colors duration-300 ${card.iconColor}`} />
-                  </motion.div>
-                  <span className="flex-1">
-                    <span className="block text-[0.65rem] uppercase tracking-widest text-primary-foreground/50">
-                      {card.label}
-                    </span>
-                    <span className="mt-1 block text-lg font-medium leading-snug">
-                      {card.value}
-                    </span>
-                  </span>
-                  <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-primary-foreground/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </motion.a>
-              ))}
-            </div>
-          </FadeIn>
+                    <motion.div
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${card.label} — tap to reveal number`}
+                      onClick={() => setFlipped(isFlipped ? null : card.label)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setFlipped(isFlipped ? null : card.label);
+                        }
+                      }}
+                      animate={{ rotateY: isFlipped ? 180 : 0 }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ y: -4 }}
+                      className="relative h-[104px] cursor-pointer [transform-style:preserve-3d]"
+                    >
+                      <div
+                        className={`absolute inset-0 flex items-center gap-4 rounded-2xl border border-primary-foreground/15 p-6 transition-colors duration-300 [backface-visibility:hidden] ${card.hoverBg} ${card.hoverBorder}`}
+                      >
+                        <card.icon className={`h-6 w-6 shrink-0 text-primary-foreground/60 transition-colors duration-300 ${card.iconColor}`} />
+                        <span className="flex-1">
+                          <span className="block text-[0.65rem] uppercase tracking-widest text-primary-foreground/50">
+                            {card.label}
+                          </span>
+                          <span className="mt-1 block text-sm font-medium leading-snug text-primary-foreground/70">
+                            Tap to reveal number
+                          </span>
+                        </span>
+                      </div>
 
-          <FadeIn delay={0.35}>
-            <div id="help-center" className="mt-8 scroll-mt-32 border-t border-primary-foreground/15 pt-6">
-              <h3 className="font-display text-lg font-medium text-primary-foreground">
-                Help Center
-              </h3>
-              <p className="mt-2 max-w-md text-sm leading-relaxed text-primary-foreground/65">
-                Need help choosing a service or preparing your requirements? Call or WhatsApp us and we’ll guide you.
-              </p>
+                      <div className="absolute inset-0 flex items-center gap-4 rounded-2xl border border-primary-foreground/30 bg-primary-foreground/10 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                        <span className="flex-1">
+                          <span className="block text-[0.65rem] uppercase tracking-widest text-primary-foreground/50">
+                            {card.label}
+                          </span>
+                          <a
+                            href={card.href}
+                            target={card.external ? "_blank" : undefined}
+                            rel={card.external ? "noopener noreferrer" : undefined}
+                            onClick={(e) => e.stopPropagation()}
+                            className="mt-1 inline-flex items-center gap-1 text-lg font-medium leading-snug underline-offset-4 hover:underline"
+                          >
+                            {card.value}
+                            <ArrowUpRight className="h-4 w-4" />
+                          </a>
+                        </span>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
             </div>
           </FadeIn>
 
