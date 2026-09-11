@@ -14,7 +14,7 @@ export function RotatingLabel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % labels.length);
-    }, 1000);
+    }, 1900);
     return () => clearInterval(interval);
   }, []);
 
