@@ -2,3 +2,4 @@
 - [x] Update PrintShine branding, footer navigation, section links, and social icons
 - [x] Replace Corporate Gifting examples with the approved product categories and premium gift set
 - [x] Replace Print Solutions examples with the approved product categories
+- [x] Add Corporate Gifting and Print Solutions filters and image previews to Previous Works
