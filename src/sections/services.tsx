@@ -11,12 +11,22 @@ const services = [
     description:
       "Curated branded merchandise and premium gift sets that leave a lasting impression.",
     detail:
-      "We source, brand and pack gift sets that feel considered rather than generic — from onboarding kits for new hires to festive hampers for clients.",
+      "Thoughtfully branded essentials and curated gift-box solutions for teams, clients, events, and memorable corporate occasions.",
     points: [
-      "Custom gift boxes and hampers",
-      "Branded apparel, drinkware and desk goods",
-      "Bulk orders with consistent finishing",
-      "Packaging, inserts and personalised notes",
+      "Mugs & Cups",
+      "T-Shirts",
+      "Caps",
+      "Keychains",
+      "Photo Frames",
+      "Trophies",
+      "Tote / Canvas Bags",
+      "Pillows / Cushions",
+      "Water Bottles",
+      "Pens",
+      "Clocks",
+      "Exclusive Gift Sets",
+      "Notepads",
+      "And More Custom corporate gifting",
     ],
   },
   {
@@ -148,7 +158,13 @@ export function Services() {
                     </motion.div>
                   </div>
 
-                  <ul className="flex flex-col justify-center gap-px bg-border">
+                  <ul
+                    className={
+                      activeService.id === "corporate-gifting"
+                        ? "grid grid-cols-1 content-center gap-px bg-border sm:grid-cols-2"
+                        : "flex flex-col justify-center gap-px bg-border"
+                    }
+                  >
                     {activeService.points.map((point, i) => (
                       <motion.li
                         key={point}
@@ -159,9 +175,27 @@ export function Services() {
                           duration: 0.5,
                           ease,
                         }}
-                        className="bg-background px-6 py-5 text-sm leading-relaxed text-foreground"
+                        className={`bg-background px-6 py-5 text-sm leading-relaxed text-foreground ${
+                          activeService.id === "corporate-gifting" &&
+                          point === "Exclusive Gift Sets"
+                            ? "sm:col-span-2"
+                            : ""
+                        }`}
                       >
-                        {point}
+                        {activeService.id === "corporate-gifting" &&
+                        point === "Exclusive Gift Sets" ? (
+                          <div className="flex items-start gap-4">
+                            <Gift className="mt-0.5 h-5 w-5 shrink-0" />
+                            <div>
+                              <span className="font-medium">Exclusive Gift Sets</span>
+                              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                                A premium curated gift box with a wallet, pen, and keychain.
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          point
+                        )}
                       </motion.li>
                     ))}
                   </ul>
