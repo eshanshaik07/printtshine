@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const PreloaderContext = createContext(true);
 
@@ -13,8 +13,6 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export function Preloader({ children }: { children: ReactNode }) {
   const [active, setActive] = useState(true);
   const [done, setDone] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-
   useEffect(() => {
     const t = setTimeout(() => setActive(false), 2000);
     return () => clearTimeout(t);
@@ -42,7 +40,7 @@ export function Preloader({ children }: { children: ReactNode }) {
             className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
           >
             <span className="inline-block px-4">
-              <span className="block overflow-hidden">
+              <span className="block overflow-visible">
                 <motion.span
                   initial={{ y: "110%", opacity: 0 }}
                   animate={{ y: "0%", opacity: 1 }}
@@ -54,38 +52,19 @@ export function Preloader({ children }: { children: ReactNode }) {
                     ı
                     <span
                       aria-hidden="true"
-                      className="absolute left-1/2 top-0 h-0 w-0 text-foreground"
+                      className="preloader-sparkles absolute left-1/2 top-0 h-0 w-0 text-foreground"
                     >
                       {[
-                        { className: "-left-6 -top-6 text-sm", delay: 0 },
-                        { className: "-left-1 -top-9 text-2xl", delay: 0.22 },
-                        { className: "left-5 -top-7 text-xs", delay: 0.44 },
-                      ].map((sparkle) => (
-                        <motion.span
-                          key={sparkle.className}
-                          className={`absolute block leading-none ${sparkle.className}`}
-                          initial={{ opacity: 0, scale: 0.4 }}
-                          animate={
-                            prefersReducedMotion
-                              ? { opacity: 0.85, scale: 1 }
-                              : {
-                                  opacity: [0.2, 1, 0.2, 0.2],
-                                  scale: [0.65, 1.15, 0.65, 0.65],
-                                }
-                          }
-                          transition={
-                            prefersReducedMotion
-                              ? { duration: 0 }
-                              : {
-                                  duration: 1.35,
-                                  delay: 0.55 + sparkle.delay,
-                                  repeat: Infinity,
-                                  ease: "easeInOut",
-                                }
-                          }
+                        "-left-6 -top-6 text-sm",
+                        "-left-1 -top-9 text-2xl",
+                        "left-5 -top-7 text-xs",
+                      ].map((className) => (
+                        <span
+                          key={className}
+                          className={`preloader-sparkle absolute block leading-none ${className}`}
                         >
                           ✦
-                        </motion.span>
+                        </span>
                       ))}
                     </span>
                   </span>
