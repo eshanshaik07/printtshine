@@ -38,10 +38,19 @@ const services = [
     detail:
       "Offset and digital printing with careful colour control, plus finishes that make a simple piece of paper feel expensive.",
     points: [
-      "Business cards, letterheads and stationery",
-      "Brochures, catalogues and flyers",
-      "Product labels, stickers and packaging",
-      "Foiling, spot UV, emboss and matte finishes",
+      "Brochures",
+      "Coffee Table Books",
+      "Personalised Table Books",
+      "Leaflets",
+      "Product Catalogues",
+      "Annual Reports",
+      "Bill Books",
+      "Visiting Cards",
+      "Scribble Pads",
+      "Business Cards",
+      "Calendars — Wall & Desktop",
+      "School Diaries",
+      "And More Custom Print Solutions",
     ],
   },
   {

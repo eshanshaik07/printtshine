@@ -1,3 +1,4 @@
 - [x] Update services page box headings to: Corporate Gifting, Print Solutions, Laser Cutting & Engraving, Social Media Posts, Front End Website Developer
 - [x] Update PrintShine branding, footer navigation, section links, and social icons
 - [x] Replace Corporate Gifting examples with the approved product categories and premium gift set
+- [x] Replace Print Solutions examples with the approved product categories
