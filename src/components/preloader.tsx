@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const PreloaderContext = createContext(true);
 
@@ -50,36 +50,23 @@ export function Preloader({ children }: { children: ReactNode }) {
                   printSh
                   <span className="relative inline-block">
                     ı
-                    <MotionConfig reducedMotion="never">
-                      <span
-                        aria-hidden="true"
-                        className="absolute left-1/2 top-0 h-0 w-0 text-foreground"
-                      >
-                        {[
-                          { className: "-left-6 -top-6 text-sm", delay: 0 },
-                          { className: "-left-1 -top-9 text-2xl", delay: 0.22 },
-                          { className: "left-5 -top-7 text-xs", delay: 0.44 },
-                        ].map((sparkle) => (
-                          <motion.span
-                            key={sparkle.className}
-                            className={`absolute block leading-none ${sparkle.className}`}
-                            initial={{ opacity: 0, scale: 0.4 }}
-                            animate={{
-                              opacity: [0.12, 1, 0.12],
-                              scale: [0.55, 1.18, 0.55],
-                            }}
-                            transition={{
-                              duration: 0.9,
-                              delay: 0.3 + sparkle.delay,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                          >
-                            ✦
-                          </motion.span>
-                        ))}
-                      </span>
-                    </MotionConfig>
+                    <span
+                      aria-hidden="true"
+                      className="preloader-sparkles absolute left-1/2 top-0 h-0 w-0 text-foreground"
+                    >
+                      {[
+                        "-left-6 -top-6 text-sm",
+                        "-left-1 -top-9 text-2xl",
+                        "left-5 -top-7 text-xs",
+                      ].map((className) => (
+                        <span
+                          key={className}
+                          className={`preloader-sparkle absolute block leading-none ${className}`}
+                        >
+                          ✦
+                        </span>
+                      ))}
+                    </span>
                   </span>
                   ne
                 </motion.span>
