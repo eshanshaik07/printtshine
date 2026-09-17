@@ -30,7 +30,7 @@ const socialLinks: Array<{ label: string; icon: LucideIcon; href?: string }> = [
   { label: "LinkedIn", icon: Linkedin },
   {
     label: "WhatsApp",
-    href: "https://wa.me/919291261143",
+    href: "https://wa.me/919291474292",
     icon: MessageCircle,
   },
 ];
