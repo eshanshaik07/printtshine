@@ -253,7 +253,7 @@ function ImagePreview({
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <AnimatedButton href={contactHref} variant="outline">
-                Start Customizing
+                Contact us
               </AnimatedButton>
               <AnimatedButton href={contactHref}>Order Now</AnimatedButton>
             </div>
