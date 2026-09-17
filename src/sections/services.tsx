@@ -170,7 +170,7 @@ export function Services() {
                   <ul
                     className={
                       activeService.id === "corporate-gifting"
-                        ? "grid grid-cols-1 content-center gap-px bg-border sm:grid-cols-2"
+                        ? "grid grid-cols-1 content-center gap-px bg-border sm:grid-flow-dense sm:grid-cols-2"
                         : "flex flex-col justify-center gap-px bg-border"
                     }
                   >
