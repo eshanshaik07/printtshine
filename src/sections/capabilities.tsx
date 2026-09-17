@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import giftingAsset from "@/assets/printshine-gifting.webp.asset.json";
+import giftingAsset from "@/assets/printshine-gifting.webp.png";
 
 const banner = [
   "Office Needs",
