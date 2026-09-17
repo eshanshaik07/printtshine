@@ -10,9 +10,9 @@ import { AnimatedButton } from "@/components/animated-button";
 import { StudioMap } from "@/components/studio-map";
 import { submitContact } from "@/lib/contact.functions";
 
-const PHONE_DISPLAY = "+91 92912 61143";
-const PHONE_HREF = "tel:+919291261143";
-const WHATSAPP_NUMBER = "919291261143";
+const PHONE_DISPLAY = "+91 92914 74292";
+const PHONE_HREF = "tel:+919291474292";
+const WHATSAPP_NUMBER = "919291474292";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hi printShine, we are interested in making a project with you."
 );
