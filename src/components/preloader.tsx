@@ -55,9 +55,9 @@ export function Preloader({ children }: { children: ReactNode }) {
                       className="preloader-sparkles absolute left-1/2 top-0 h-0 w-0 text-foreground"
                     >
                       {[
-                        "-left-6 -top-6 text-sm",
-                        "-left-1 -top-9 text-2xl",
-                        "left-5 -top-7 text-xs",
+                        "-left-6 -top-8 text-sm",
+                        "-left-1 -top-6 text-2xl",
+                        "left-5 -top-9 text-xs",
                       ].map((className) => (
                         <span
                           key={className}
