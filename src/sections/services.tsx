@@ -262,6 +262,16 @@ export function Services() {
                       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                         {service.description}
                       </p>
+                      <motion.span
+                        className="mt-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-foreground"
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        Click to know more
+                        <span aria-hidden className="text-base leading-none">
+                          →
+                        </span>
+                      </motion.span>
                       <span className="mt-6 block h-px w-0 bg-foreground/20 transition-all duration-500 group-hover:w-full" />
                     </motion.button>
                   </FadeIn>
