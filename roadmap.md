@@ -3,3 +3,4 @@
 - [x] Replace Corporate Gifting examples with the approved product categories and premium gift set
 - [x] Replace Print Solutions examples with the approved product categories
 - [x] Add Corporate Gifting and Print Solutions filters and image previews to Previous Works
+- [x] Arrange Services and Works categories in the requested order
