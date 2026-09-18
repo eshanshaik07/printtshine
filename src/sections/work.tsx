@@ -124,7 +124,7 @@ function FilterButton({
       onClick={onClick}
       aria-pressed={active}
       whileTap={{ scale: 0.97 }}
-      className={`rounded-full border px-4 py-2 text-xs font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-secondary ${
+      className={`max-w-full rounded-full border px-3 py-2 text-center text-xs font-medium leading-snug transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-secondary sm:px-4 ${
         active
           ? "border-foreground bg-foreground text-background"
           : "border-border bg-background text-muted-foreground hover:border-foreground/40 hover:text-foreground"
@@ -167,9 +167,9 @@ function PortfolioCard({
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
       </div>
-      <div className="flex items-center justify-between border-t border-border p-6">
-        <div>
-          <h3 className="font-display text-lg font-medium text-foreground">{label}</h3>
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-t border-border p-4 sm:p-6">
+        <div className="min-w-0">
+          <h3 className="font-display text-lg font-medium leading-snug text-foreground">{label}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{item.group}</p>
         </div>
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-secondary transition-transform duration-300 group-hover:rotate-45">
@@ -308,7 +308,7 @@ export function Work({
   };
 
   return (
-    <section id="portfolio" className="scroll-mt-28 bg-secondary px-6 py-32 lg:px-8">
+    <section id="portfolio" className="scroll-mt-28 bg-secondary px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <FadeIn className="scroll-mt-32">
           <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
@@ -316,7 +316,7 @@ export function Work({
               Previous Works
             </span>
           </span>
-          <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+          <h2 className="mt-4 max-w-xl font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
             Projects with presence.
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
@@ -324,15 +324,17 @@ export function Work({
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.1} className="mt-12">
-          <div className="inline-flex w-full rounded-2xl border border-border bg-background p-1 sm:w-auto">
-            {groups.map((item) => (
+        <FadeIn delay={0.1} className="mt-10 sm:mt-12">
+          <div className="grid w-full grid-cols-2 gap-1 rounded-2xl border border-border bg-background p-1 sm:inline-flex sm:w-auto sm:gap-0">
+            {groups.map((item, index) => (
               <button
                 key={item}
                 type="button"
                 onClick={() => selectGroup(item)}
                 aria-pressed={group === item}
-                className={`relative flex-1 rounded-xl px-5 py-3 text-sm font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-none ${
+                className={`relative flex min-h-16 min-w-0 items-center justify-center rounded-xl px-3 py-3 text-center text-xs font-medium leading-snug transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-0 sm:flex-none sm:px-5 sm:text-sm ${
+                  index === groups.length - 1 ? "col-span-2 sm:col-auto" : ""
+                } ${
                   group === item
                     ? "text-background"
                     : "text-muted-foreground hover:text-foreground"
@@ -345,13 +347,16 @@ export function Work({
                     transition={{ duration: 0.4, ease }}
                   />
                 )}
-                <span className="relative z-10">{item}</span>
+                <span className="relative z-10 max-w-full">{item}</span>
               </button>
             ))}
           </div>
         </FadeIn>
 
-        <div className="mt-8 flex flex-wrap gap-2" aria-label={`${group} product filters`}>
+        <div
+          className="mt-6 flex max-w-full flex-wrap items-center gap-2 sm:mt-8"
+          aria-label={`${group} product filters`}
+        >
           {filters.map((item) => (
             <FilterButton key={item} active={filter === item} onClick={() => setFilter(item)}>
               {item}
@@ -367,7 +372,7 @@ export function Work({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mt-12 grid gap-6 md:grid-cols-2"
+              className="mt-10 grid min-w-0 gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2"
             >
               {visibleItems.map((item) => {
                 const label = filter === "All" ? item.title : filter;
@@ -388,7 +393,7 @@ export function Work({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease }}
-              className="mt-12 flex min-h-72 flex-col items-center justify-center border border-dashed border-border bg-background px-6 text-center"
+              className="mt-10 flex min-h-60 w-full flex-col items-center justify-center border border-dashed border-border bg-background px-5 py-10 text-center sm:mt-12 sm:min-h-72 sm:px-6"
             >
               <ImageOff className="h-7 w-7 text-muted-foreground" />
               <h3 className="mt-5 font-display text-xl font-medium text-foreground">{filter}</h3>
