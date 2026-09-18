@@ -42,7 +42,12 @@ const printFilters = [
   "And More Custom Print Solutions",
 ] as const;
 
-type WorkGroup = "Corporate Gifting" | "Print Solutions";
+type WorkGroup =
+  | "Print Solutions"
+  | "Social Media Posts"
+  | "Front End Web Development"
+  | "Corporate Gifting"
+  | "Laser Cutting & Engraving";
 
 type PortfolioItem = {
   id: string;
@@ -95,7 +100,13 @@ const portfolio: PortfolioItem[] = [
   },
 ];
 
-const groups: WorkGroup[] = ["Corporate Gifting", "Print Solutions"];
+const groups: WorkGroup[] = [
+  "Print Solutions",
+  "Social Media Posts",
+  "Front End Web Development",
+  "Corporate Gifting",
+  "Laser Cutting & Engraving",
+];
 const ease = [0.16, 1, 0.3, 1] as const;
 
 function FilterButton({
@@ -265,13 +276,18 @@ function ImagePreview({
 }
 
 export function Work() {
-  const [group, setGroup] = useState<WorkGroup>("Corporate Gifting");
+  const [group, setGroup] = useState<WorkGroup>("Print Solutions");
   const [filter, setFilter] = useState<string>("All");
   const [selected, setSelected] = useState<{ item: PortfolioItem; label: string } | null>(
     null,
   );
 
-  const filters = group === "Corporate Gifting" ? corporateFilters : printFilters;
+  const filters =
+    group === "Corporate Gifting"
+      ? corporateFilters
+      : group === "Print Solutions"
+        ? printFilters
+        : (["All"] as const);
   const visibleItems = useMemo(
     () =>
       portfolio.filter(

@@ -5,31 +5,6 @@ import { Gift, Printer, PenTool, Share2, Code, ArrowLeft } from "lucide-react";
 
 const services = [
   {
-    id: "corporate-gifting",
-    icon: Gift,
-    title: "Corporate Gifting",
-    description:
-      "Curated branded merchandise and premium gift sets that leave a lasting impression.",
-    detail:
-      "Thoughtfully branded essentials and curated gift-box solutions for teams, clients, events, and memorable corporate occasions.",
-    points: [
-      "Mugs & Cups",
-      "T-Shirts",
-      "Caps",
-      "Keychains",
-      "Photo Frames",
-      "Trophies",
-      "Tote / Canvas Bags",
-      "Pillows / Cushions",
-      "Water Bottles",
-      "Pens",
-      "Clocks",
-      "Exclusive Gift Sets",
-      "Notepads",
-      "And More Custom corporate gifting",
-    ],
-  },
-  {
     id: "print-solutions",
     icon: Printer,
     title: "Print Solutions",
@@ -51,21 +26,6 @@ const services = [
       "Calendars — Wall & Desktop",
       "School Diaries",
       "And More Custom Print Solutions",
-    ],
-  },
-  {
-    id: "laser-cutting-engraving",
-    icon: PenTool,
-    title: "Laser Cutting & Engraving",
-    description:
-      "Precise custom cuts and engravings on acrylic, wood, metal, and more.",
-    detail:
-      "Sharp, repeatable cuts and permanent engraving for signage, awards, and one-off pieces where detail matters.",
-    points: [
-      "Acrylic, MDF, wood, leather and metal",
-      "Signage, name boards and standees",
-      "Trophies, awards and keepsakes",
-      "Prototype and small-batch production",
     ],
   },
   {
@@ -96,6 +56,46 @@ const services = [
       "Responsive layouts and motion detail",
       "Reusable UI components",
       "Performance and basic SEO setup",
+    ],
+  },
+  {
+    id: "corporate-gifting",
+    icon: Gift,
+    title: "Corporate Gifting",
+    description:
+      "Curated branded merchandise and premium gift sets that leave a lasting impression.",
+    detail:
+      "Thoughtfully branded essentials and curated gift-box solutions for teams, clients, events, and memorable corporate occasions.",
+    points: [
+      "Mugs & Cups",
+      "T-Shirts",
+      "Caps",
+      "Keychains",
+      "Photo Frames",
+      "Trophies",
+      "Tote / Canvas Bags",
+      "Pillows / Cushions",
+      "Water Bottles",
+      "Pens",
+      "Clocks",
+      "Exclusive Gift Sets",
+      "Notepads",
+      "And More Custom corporate gifting",
+    ],
+  },
+  {
+    id: "laser-cutting-engraving",
+    icon: PenTool,
+    title: "Laser Cutting & Engraving",
+    description:
+      "Precise custom cuts and engravings on acrylic, wood, metal, and more.",
+    detail:
+      "Sharp, repeatable cuts and permanent engraving for signage, awards, and one-off pieces where detail matters.",
+    points: [
+      "Acrylic, MDF, wood, leather and metal",
+      "Signage, name boards and standees",
+      "Trophies, awards and keepsakes",
+      "Prototype and small-batch production",
     ],
   },
 ];
