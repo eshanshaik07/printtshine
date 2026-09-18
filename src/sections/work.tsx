@@ -42,7 +42,7 @@ const printFilters = [
   "And More Custom Print Solutions",
 ] as const;
 
-type WorkGroup =
+export type WorkGroup =
   | "Print Solutions"
   | "Social Media Posts"
   | "Front End Web Development"
@@ -275,9 +275,15 @@ function ImagePreview({
   );
 }
 
-export function Work() {
-  const [group, setGroup] = useState<WorkGroup>("Print Solutions");
-  const [filter, setFilter] = useState<string>("All");
+export function Work({
+  initialGroup = "Print Solutions",
+  initialFilter = "All",
+}: {
+  initialGroup?: WorkGroup;
+  initialFilter?: string;
+}) {
+  const [group, setGroup] = useState<WorkGroup>(initialGroup);
+  const [filter, setFilter] = useState<string>(initialFilter);
   const [selected, setSelected] = useState<{ item: PortfolioItem; label: string } | null>(
     null,
   );

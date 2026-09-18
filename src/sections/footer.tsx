@@ -122,7 +122,14 @@ export function Footer() {
 
         <FooterColumn title="Works">
           {workLinks.map((item) => (
-            <Link key={item.label} to="/work" hash={item.hash} onClick={scrollToSection(item.hash)} className={footerLinkClass}>
+            <Link
+              key={item.label}
+              to="/work"
+              search={{ group: undefined, product: undefined }}
+              hash={item.hash}
+              onClick={scrollToSection(item.hash)}
+              className={footerLinkClass}
+            >
               {item.label}
             </Link>
           ))}
