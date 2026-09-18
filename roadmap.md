@@ -4,3 +4,4 @@
 - [x] Replace Print Solutions examples with the approved product categories
 - [x] Add Corporate Gifting and Print Solutions filters and image previews to Previous Works
 - [x] Arrange Services and Works categories in the requested order
+- [x] Link every expanded service item to its matching Works filter

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { FadeIn } from "@/components/fade-in";
 import { Gift, Printer, PenTool, Share2, Code, ArrowLeft } from "lucide-react";
@@ -102,6 +103,14 @@ const services = [
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+const workGroupByService: Record<string, string> = {
+  "print-solutions": "Print Solutions",
+  "social-media-posts": "Social Media Posts",
+  "front-end-website-development": "Front End Web Development",
+  "corporate-gifting": "Corporate Gifting",
+  "laser-cutting-engraving": "Laser Cutting & Engraving",
+};
+
 export function Services() {
   const [active, setActive] = useState<string | null>(null);
   const activeService = services.find((s) => s.title === active) ?? null;
@@ -184,27 +193,36 @@ export function Services() {
                           duration: 0.5,
                           ease,
                         }}
-                        className={`bg-background px-6 py-5 text-sm leading-relaxed text-foreground ${
+                        className={`bg-background text-sm leading-relaxed text-foreground ${
                           activeService.id === "corporate-gifting" &&
                           point === "Exclusive Gift Sets"
                             ? "sm:col-span-2"
                             : ""
                         }`}
                       >
-                        {activeService.id === "corporate-gifting" &&
-                        point === "Exclusive Gift Sets" ? (
-                          <div className="flex items-start gap-4">
-                            <Gift className="mt-0.5 h-5 w-5 shrink-0" />
-                            <div>
-                              <span className="font-medium">Exclusive Gift Sets</span>
-                              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                                A premium curated gift box with a wallet, pen, and keychain.
-                              </p>
+                        <Link
+                          to="/work"
+                          search={{
+                            group: workGroupByService[activeService.id],
+                            product: point,
+                          }}
+                          className="group/item block px-6 py-5 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                        >
+                          {activeService.id === "corporate-gifting" &&
+                          point === "Exclusive Gift Sets" ? (
+                            <div className="flex items-start gap-4">
+                              <Gift className="mt-0.5 h-5 w-5 shrink-0 transition-transform group-hover/item:scale-110" />
+                              <div>
+                                <span className="font-medium">Exclusive Gift Sets</span>
+                                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                                  A premium curated gift box with a wallet, pen, and keychain.
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        ) : (
-                          point
-                        )}
+                          ) : (
+                            point
+                          )}
+                        </Link>
                       </motion.li>
                     ))}
                   </ul>

@@ -1,7 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Work } from "@/sections/work";
+import { Work, type WorkGroup } from "@/sections/work";
+
+const workGroups: WorkGroup[] = [
+  "Print Solutions",
+  "Social Media Posts",
+  "Front End Web Development",
+  "Corporate Gifting",
+  "Laser Cutting & Engraving",
+];
 
 export const Route = createFileRoute("/work")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    group:
+      typeof search.group === "string" && workGroups.includes(search.group as WorkGroup)
+        ? (search.group as WorkGroup)
+        : undefined,
+    product: typeof search.product === "string" ? search.product : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Selected Work — printShine" },
@@ -24,9 +39,11 @@ export const Route = createFileRoute("/work")({
 });
 
 function WorkPage() {
+  const search = Route.useSearch();
+
   return (
     <div className="pt-24">
-      <Work />
+      <Work initialGroup={search.group} initialFilter={search.product} />
     </div>
   );
 }
