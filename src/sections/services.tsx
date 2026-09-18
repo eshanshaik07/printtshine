@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { FadeIn } from "@/components/fade-in";
+import type { WorkGroup } from "@/sections/work";
 import { Gift, Printer, PenTool, Share2, Code, ArrowLeft } from "lucide-react";
 
 const services = [
@@ -103,7 +104,7 @@ const services = [
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const workGroupByService: Record<string, string> = {
+const workGroupByService: Record<string, WorkGroup> = {
   "print-solutions": "Print Solutions",
   "social-media-posts": "Social Media Posts",
   "front-end-website-development": "Front End Web Development",
@@ -114,6 +115,9 @@ const workGroupByService: Record<string, string> = {
 export function Services() {
   const [active, setActive] = useState<string | null>(null);
   const activeService = services.find((s) => s.title === active) ?? null;
+  const activeWorkGroup = activeService
+    ? workGroupByService[activeService.id]
+    : undefined;
 
   return (
     <section id="services" className="px-6 py-32 lg:px-8">
@@ -200,14 +204,12 @@ export function Services() {
                             : ""
                         }`}
                       >
-                        <Link
-                          to="/work"
-                          search={{
-                            group: workGroupByService[activeService.id],
-                            product: point,
-                          }}
-                          className="group/item block px-6 py-5 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
-                        >
+                        {activeWorkGroup ? (
+                          <Link
+                            to="/work"
+                            search={{ group: activeWorkGroup, product: point }}
+                            className="group/item block px-6 py-5 transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                          >
                           {activeService.id === "corporate-gifting" &&
                           point === "Exclusive Gift Sets" ? (
                             <div className="flex items-start gap-4">
@@ -222,7 +224,8 @@ export function Services() {
                           ) : (
                             point
                           )}
-                        </Link>
+                          </Link>
+                        ) : null}
                       </motion.li>
                     ))}
                   </ul>

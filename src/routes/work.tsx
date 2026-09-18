@@ -12,10 +12,11 @@ const workGroups: WorkGroup[] = [
 export const Route = createFileRoute("/work")({
   validateSearch: (search: Record<string, unknown>) => ({
     group:
-      typeof search.group === "string" && workGroups.includes(search.group as WorkGroup)
-        ? (search.group as WorkGroup)
+      typeof search["group"] === "string" &&
+      workGroups.includes(search["group"] as WorkGroup)
+        ? (search["group"] as WorkGroup)
         : undefined,
-    product: typeof search.product === "string" ? search.product : undefined,
+    product: typeof search["product"] === "string" ? search["product"] : undefined,
   }),
   head: () => ({
     meta: [
@@ -43,7 +44,10 @@ function WorkPage() {
 
   return (
     <div className="pt-24">
-      <Work initialGroup={search.group} initialFilter={search.product} />
+      <Work
+        initialGroup={search.group ?? "Print Solutions"}
+        initialFilter={search.product ?? "All"}
+      />
     </div>
   );
 }
