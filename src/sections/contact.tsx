@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check, Loader2, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Check, Loader2, Mail, MessageCircle, Phone } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import { AnimatedButton } from "@/components/animated-button";
 import { StudioMap } from "@/components/studio-map";
@@ -17,6 +17,11 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hi printShine, we are interested in making a project with you."
 );
 const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+const EMAIL_ADDRESS = "hello.printshine@gmail.com";
+const EMAIL_MESSAGE = encodeURIComponent(
+  "Hi printShine, we are interested in making a project with you"
+);
+const EMAIL_HREF = `mailto:${EMAIL_ADDRESS}?body=${EMAIL_MESSAGE}`;
 const ADDRESS = "printShine, Cheeriyal, Keesara, Hyderabad, Telangana";
 
 
@@ -65,6 +70,17 @@ const contactCards = [
     hoverBg: "hover:bg-emerald-500/10",
     hoverBorder: "hover:border-emerald-500/40",
     iconColor: "group-hover:text-emerald-400",
+  },
+  {
+    href: EMAIL_HREF,
+    icon: Mail,
+    label: "Email us",
+    value: EMAIL_ADDRESS,
+    external: false,
+    hoverBg: "hover:bg-amber-500/10",
+    hoverBorder: "hover:border-amber-400/40",
+    iconColor: "group-hover:text-amber-300",
+    wide: true,
   },
 ];
 
@@ -143,7 +159,7 @@ export function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="[perspective:1200px]"
+                    className={`[perspective:1200px] ${"wide" in card && card.wide ? "sm:col-span-2" : ""}`}
                   >
                     <motion.div
                       role="button"
@@ -185,7 +201,7 @@ export function Contact() {
                             target={card.external ? "_blank" : undefined}
                             rel={card.external ? "noopener noreferrer" : undefined}
                             onClick={(e) => e.stopPropagation()}
-                            className="mt-1 inline-flex items-center gap-1 text-lg font-medium leading-snug underline-offset-4 hover:underline"
+                            className="mt-1 inline-flex max-w-full items-center gap-1 break-all text-base font-medium leading-snug underline-offset-4 hover:underline sm:text-lg"
                           >
                             {card.value}
                             <ArrowUpRight className="h-4 w-4" />
