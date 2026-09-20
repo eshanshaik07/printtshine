@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { AnimatedButton } from "./animated-button";
 import { ThemeToggle } from "./theme-toggle";
@@ -70,6 +70,15 @@ export function Navbar() {
 
           <div className="hidden items-center gap-3 md:flex">
             <ThemeToggle />
+            <Link
+              to="/cart"
+              aria-label="Open cart"
+              title="Cart"
+              activeProps={{ className: "border-foreground bg-secondary" }}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <ShoppingCart className="h-5 w-5" />
+            </Link>
             <AnimatedButton href="/contact" size="default" variant="primary">
               Start Customizing
             </AnimatedButton>
@@ -77,6 +86,15 @@ export function Navbar() {
 
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
+            <Link
+              to="/cart"
+              aria-label="Open cart"
+              title="Cart"
+              activeProps={{ className: "border-foreground bg-secondary" }}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <ShoppingCart className="h-5 w-5" />
+            </Link>
             <button
               onClick={() => setMobileOpen(true)}
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 transition-colors hover:bg-secondary"
