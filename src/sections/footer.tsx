@@ -8,11 +8,11 @@ const companyLinks = [
 ] as const;
 
 const serviceLinks = [
-  { label: "Corporate Gifting", hash: "corporate-gifting" },
   { label: "Print Solutions", hash: "print-solutions" },
-  { label: "Laser Cutting & Engraving", hash: "laser-cutting-engraving" },
   { label: "Social Media Posts", hash: "social-media-posts" },
   { label: "Front-End Website Development", hash: "front-end-website-development" },
+  { label: "Corporate Gifting", hash: "corporate-gifting" },
+  { label: "Laser Cutting & Engraving", hash: "laser-cutting-engraving" },
 ] as const;
 
 const workLinks = [
