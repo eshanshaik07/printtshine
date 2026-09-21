@@ -120,7 +120,7 @@ export function Footer() {
           ))}
         </FooterColumn>
 
-        <FooterColumn title="Works">
+        <FooterColumn title="Services">
           {workLinks.map((item) => (
             <Link
               key={item.label}
