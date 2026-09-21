@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { About } from "@/sections/about";
+import { Services } from "@/sections/services";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -27,6 +28,7 @@ function AboutPage() {
   return (
     <div className="pt-24">
       <About />
+      <Services />
     </div>
   );
 }

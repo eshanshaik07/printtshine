@@ -8,3 +8,4 @@
 - [x] Add an animated “Click to know more” prompt to every service box
 - [x] Arrange the Works page categories, filters, and results for mobile screens
 - [x] Add a navigation cart icon and an empty-cart page linking to Works
+- [x] Merge Services content into About and retire the standalone Services page
