@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, ImageOff, X } from "lucide-react";
+import { ArrowUpRight, ImageOff, Minus, Plus, X } from "lucide-react";
 import { AnimatedButton } from "@/components/animated-button";
+import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/fade-in";
 import brandingIdentity from "@/assets/brandidentity.jpeg";
 import giftingCollection from "@/assets/brandmockup.jpeg";
@@ -57,6 +58,29 @@ type PortfolioItem = {
   image: string;
   alt: string;
 };
+
+type ProductPrice = {
+  original: number;
+  sale: number;
+};
+
+const productPrices: Record<string, ProductPrice> = {
+  "Mugs & Cups": { original: 399, sale: 249 },
+  "T-Shirts": { original: 499, sale: 299 },
+  Caps: { original: 349, sale: 229 },
+  "Tote / Canvas Bags": { original: 299, sale: 199 },
+  Pens: { original: 99, sale: 59 },
+  "Water Bottles": { original: 699, sale: 449 },
+  "Exclusive Gift Sets": { original: 1999, sale: 1299 },
+  Notepads: { original: 249, sale: 149 },
+  "Coffee Table Books": { original: 1499, sale: 999 },
+  "Product Catalogues": { original: 899, sale: 599 },
+  "Annual Reports": { original: 799, sale: 499 },
+  "Visiting Cards": { original: 499, sale: 299 },
+  "Business Cards": { original: 499, sale: 299 },
+};
+
+const defaultPrice: ProductPrice = { original: 499, sale: 299 };
 
 const portfolio: PortfolioItem[] = [
   {
@@ -189,6 +213,11 @@ function ImagePreview({
   label: string;
   onClose: () => void;
 }) {
+  const [quantityInput, setQuantityInput] = useState("1");
+  const quantity = Math.max(1, Number.parseInt(quantityInput, 10) || 1);
+  const price = productPrices[label] ?? defaultPrice;
+  const total = price.sale * quantity;
+
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -204,7 +233,12 @@ function ImagePreview({
     };
   }, [onClose]);
 
-  const contactHref = `/contact?product=${encodeURIComponent(label)}#contact`;
+  const orderDetails = `${label} — Quantity: ${quantity}, Total: ₹${total.toLocaleString("en-IN")}`;
+  const contactHref = `/contact?product=${encodeURIComponent(orderDetails)}#contact`;
+
+  const changeQuantity = (amount: number) => {
+    setQuantityInput(String(Math.max(1, quantity + amount)));
+  };
 
   return (
     <motion.div
@@ -253,20 +287,73 @@ function ImagePreview({
               className="max-h-[56vh] w-auto max-w-full object-contain"
             />
           </div>
-          <div className="flex flex-col gap-5 border-t border-border p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-            <div>
+          <div className="grid gap-6 border-t border-border p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-7">
+            <div className="min-w-0">
               <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                 {item.group}
               </p>
               <h3 className="mt-2 font-display text-2xl font-medium text-foreground sm:text-3xl">
                 {label}
               </h3>
+              <div className="mt-4 flex flex-wrap items-baseline gap-3" aria-label={`Sale price ₹${price.sale}`}>
+                <span className="text-base text-muted-foreground line-through decoration-1">
+                  ₹{price.original.toLocaleString("en-IN")}
+                </span>
+                <span className="font-display text-3xl font-semibold text-foreground">
+                  ₹{price.sale.toLocaleString("en-IN")}
+                </span>
+                <span className="text-xs text-muted-foreground">per item</span>
+              </div>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <AnimatedButton href={contactHref} variant="outline">
-                Contact us
-              </AnimatedButton>
-              <AnimatedButton href={contactHref}>Order Now</AnimatedButton>
+            <div className="flex flex-col gap-4 sm:items-end">
+              <div>
+                <label htmlFor="product-quantity" className="mb-2 block text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                  Quantity
+                </label>
+                <div className="flex h-11 w-full items-stretch overflow-hidden rounded-md border border-border bg-background sm:w-44">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => changeQuantity(-1)}
+                    disabled={quantity <= 1}
+                    aria-label="Decrease quantity"
+                    className="h-full w-11 shrink-0 rounded-none border-r border-border shadow-none"
+                  >
+                    <Minus />
+                  </Button>
+                  <input
+                    id="product-quantity"
+                    type="number"
+                    min="1"
+                    inputMode="numeric"
+                    value={quantityInput}
+                    onChange={(event) => setQuantityInput(event.target.value.replace(/[^0-9]/g, ""))}
+                    onBlur={() => setQuantityInput(String(quantity))}
+                    aria-label="Product quantity"
+                    className="min-w-0 flex-1 bg-transparent px-2 text-center text-sm font-medium text-foreground outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => changeQuantity(1)}
+                    aria-label="Increase quantity"
+                    className="h-full w-11 shrink-0 rounded-none border-l border-border shadow-none"
+                  >
+                    <Plus />
+                  </Button>
+                </div>
+              </div>
+              <div className="flex w-full items-center justify-between gap-5 sm:w-auto">
+                <div>
+                  <span className="block text-xs text-muted-foreground">Total</span>
+                  <strong className="font-display text-xl font-semibold text-foreground">
+                    ₹{total.toLocaleString("en-IN")}
+                  </strong>
+                </div>
+                <AnimatedButton href={contactHref}>Order Now</AnimatedButton>
+              </div>
             </div>
           </div>
         </div>
