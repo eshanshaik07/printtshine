@@ -10,7 +10,7 @@ import { ScrambleText } from "./scramble-text";
 
 const navLinks = [
   { label: "Home", to: "/" },
-  { label: "Work", to: "/work" },
+  { label: "Services", to: "/work" },
   { label: "Services", to: "/services" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
