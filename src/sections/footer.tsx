@@ -139,11 +139,11 @@ export function Footer() {
           <p className="max-w-[15rem] text-sm leading-relaxed text-muted-foreground">
             Let&apos;s create something amazing together.
           </p>
-          <Link to="/contact" hash="contact-us" onClick={scrollToSection("contact-us")} className={`${footerLinkClass} text-foreground`}>
+          <Link to="/contact" search={{ product: undefined }} hash="contact-us" onClick={scrollToSection("contact-us")} className={`${footerLinkClass} text-foreground`}>
             Contact Us
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
-          <Link to="/contact" hash="help-center" onClick={scrollToSection("help-center")} className={footerLinkClass}>
+          <Link to="/contact" search={{ product: undefined }} hash="help-center" onClick={scrollToSection("help-center")} className={footerLinkClass}>
             Help Center
           </Link>
         </FooterColumn>

@@ -7,6 +7,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import { usePreloaderDone } from "./preloader";
 import { ScrambleText } from "./scramble-text";
+import { useCart } from "./cart-provider";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -21,6 +22,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const preloaderDone = usePreloaderDone();
+  const { itemCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -74,9 +76,14 @@ export function Navbar() {
               aria-label="Open cart"
               title="Cart"
               activeProps={{ className: "border-foreground bg-secondary" }}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <ShoppingCart className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[0.65rem] font-bold leading-none text-primary-foreground">
+                  {itemCount > 99 ? "99+" : itemCount}
+                </span>
+              )}
             </Link>
             <AnimatedButton href="/contact" size="default" variant="primary">
               Start Customizing
@@ -90,9 +97,14 @@ export function Navbar() {
               aria-label="Open cart"
               title="Cart"
               activeProps={{ className: "border-foreground bg-secondary" }}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/80 text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <ShoppingCart className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[0.65rem] font-bold leading-none text-primary-foreground">
+                  {itemCount > 99 ? "99+" : itemCount}
+                </span>
+              )}
             </Link>
             <button
               onClick={() => setMobileOpen(true)}

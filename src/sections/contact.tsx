@@ -85,7 +85,7 @@ const contactCards = [
 ];
 
 
-export function Contact() {
+export function Contact({ initialMessage = "" }: { initialMessage?: string | undefined }) {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [flipped, setFlipped] = useState<string | null>(null);
@@ -97,7 +97,7 @@ export function Contact() {
     formState: { errors },
   } = useForm<ContactValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", phone: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", message: initialMessage },
   });
 
   const onSubmit = async (values: ContactValues) => {
