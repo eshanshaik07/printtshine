@@ -11,10 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as CartRouteImport } from './routes/cart'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as CartIndexRouteImport } from './routes/cart.index'
 import { Route as CartAddedRouteImport } from './routes/cart.added'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,11 +25,6 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -47,77 +42,83 @@ const WorkRoute = WorkRouteImport.update({
   path: '/work',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CartIndexRoute = CartIndexRouteImport.update({
+  id: '/cart/',
+  path: '/cart/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartAddedRoute = CartAddedRouteImport.update({
-  id: '/added',
-  path: '/added',
-  getParentRoute: () => CartRoute,
+  id: '/cart/added',
+  path: '/cart/added',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/cart': typeof CartRouteWithChildren
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/cart/added': typeof CartAddedRoute
+  '/cart/': typeof CartIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/cart': typeof CartRouteWithChildren
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/cart/added': typeof CartAddedRoute
+  '/cart': typeof CartIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/cart': typeof CartRouteWithChildren
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
   '/cart/added': typeof CartAddedRoute
+  '/cart/': typeof CartIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/cart'
     | '/contact'
     | '/services'
     | '/work'
     | '/cart/added'
+    | '/cart/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/cart'
     | '/contact'
     | '/services'
     | '/work'
     | '/cart/added'
+    | '/cart'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/cart'
     | '/contact'
     | '/services'
     | '/work'
     | '/cart/added'
+    | '/cart/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  CartRoute: typeof CartRouteWithChildren
   ContactRoute: typeof ContactRoute
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
+  CartAddedRoute: typeof CartAddedRoute
+  CartIndexRoute: typeof CartIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -134,13 +135,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -164,33 +158,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cart/': {
+      id: '/cart/'
+      path: '/cart'
+      fullPath: '/cart/'
+      preLoaderRoute: typeof CartIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart/added': {
       id: '/cart/added'
-      path: '/added'
+      path: '/cart/added'
       fullPath: '/cart/added'
       preLoaderRoute: typeof CartAddedRouteImport
-      parentRoute: typeof CartRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface CartRouteChildren {
-  CartAddedRoute: typeof CartAddedRoute
-}
-
-const CartRouteChildren: CartRouteChildren = {
-  CartAddedRoute: CartAddedRoute,
-}
-
-const CartRouteWithChildren = CartRoute._addFileChildren(CartRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  CartRoute: CartRouteWithChildren,
   ContactRoute: ContactRoute,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
+  CartAddedRoute: CartAddedRoute,
+  CartIndexRoute: CartIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
