@@ -5,7 +5,7 @@ import { AnimatedButton } from "@/components/animated-button";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart-provider";
 
-export const Route = createFileRoute("/cart")({
+export const Route = createFileRoute("/cart/")({
   head: () => ({
     meta: [
       { title: "Your Cart — printShine" },
