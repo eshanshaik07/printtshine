@@ -85,7 +85,7 @@ const contactCards = [
 ];
 
 
-export function Contact({ initialMessage = "" }: { initialMessage?: string }) {
+export function Contact({ initialMessage = "" }: { initialMessage?: string | undefined }) {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [flipped, setFlipped] = useState<string | null>(null);
