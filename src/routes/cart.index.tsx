@@ -71,14 +71,16 @@ function CartPage() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     ₹{item.unitPrice.toLocaleString("en-IN")} per item
                   </p>
-                  <button
+                  <Button
                     type="button"
+                    variant="ghost"
+                    size="sm"
                     onClick={() => removeItem(item.id)}
-                    className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="mt-3 h-auto px-0 py-1 text-muted-foreground shadow-none hover:bg-transparent hover:text-foreground"
                   >
                     <Trash2 className="h-4 w-4" />
                     Discard
-                  </button>
+                  </Button>
                 </div>
                 <div className="flex items-end justify-between gap-5 sm:flex-col sm:items-end">
                   <div className="flex h-11 items-stretch overflow-hidden rounded-md border border-border bg-background">
