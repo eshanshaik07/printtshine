@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Contact } from "@/sections/contact";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    product: typeof search["product"] === "string" ? search["product"] : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contact — printShine" },
@@ -24,9 +27,10 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const search = Route.useSearch();
   return (
     <div className="pt-24">
-      <Contact />
+      <Contact initialMessage={search.product} />
     </div>
   );
 }

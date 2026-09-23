@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, ShoppingCart } from "lucide-react";
+import { ArrowRight, Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import { AnimatedButton } from "@/components/animated-button";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/components/cart-provider";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -24,6 +26,127 @@ export const Route = createFileRoute("/cart")({
 });
 
 function CartPage() {
+  const { items, updateQuantity, removeItem } = useCart();
+  const grandTotal = items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
+  const orderDescription = `Hi printShine, we want to order ${items
+    .map(
+      (item) =>
+        `an item ${item.name} of quantity ${item.quantity} of cost ₹${(
+          item.unitPrice * item.quantity
+        ).toLocaleString("en-IN")}`,
+    )
+    .join(", ")}.`;
+
+  if (items.length > 0) {
+    return (
+      <section className="min-h-[78vh] px-4 pb-24 pt-32 sm:px-6 sm:pt-36 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="text-xs font-semibold uppercase text-muted-foreground">Your cart</p>
+            <h1 className="mt-3 font-display text-4xl font-semibold text-foreground sm:text-5xl">
+              Ready to order
+            </h1>
+          </motion.div>
+
+          <div className="mt-10 divide-y divide-border border-y border-border">
+            {items.map((item, index) => (
+              <motion.article
+                key={item.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08, duration: 0.45 }}
+                className="grid gap-5 py-6 sm:grid-cols-[9rem_minmax(0,1fr)_auto] sm:items-center"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="aspect-[4/3] w-full rounded-md object-cover sm:w-36"
+                />
+                <div className="min-w-0">
+                  <h2 className="font-display text-xl font-medium text-foreground">{item.name}</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    ₹{item.unitPrice.toLocaleString("en-IN")} per item
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => removeItem(item.id)}
+                    className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Discard
+                  </button>
+                </div>
+                <div className="flex items-end justify-between gap-5 sm:flex-col sm:items-end">
+                  <div className="flex h-11 items-stretch overflow-hidden rounded-md border border-border bg-background">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      disabled={item.quantity <= 1}
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      aria-label={`Decrease ${item.name} quantity`}
+                      className="h-full w-11 rounded-none border-r border-border shadow-none"
+                    >
+                      <Minus />
+                    </Button>
+                    <input
+                      type="number"
+                      min="1"
+                      inputMode="numeric"
+                      value={item.quantity}
+                      onChange={(event) => updateQuantity(item.id, Number.parseInt(event.target.value, 10))}
+                      aria-label={`${item.name} quantity`}
+                      className="w-14 bg-transparent px-1 text-center text-sm font-medium text-foreground outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      aria-label={`Increase ${item.name} quantity`}
+                      className="h-full w-11 rounded-none border-l border-border shadow-none"
+                    >
+                      <Plus />
+                    </Button>
+                  </div>
+                  <strong className="font-display text-xl font-semibold text-foreground">
+                    ₹{(item.unitPrice * item.quantity).toLocaleString("en-IN")}
+                  </strong>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col items-stretch justify-between gap-6 sm:flex-row sm:items-end">
+            <div>
+              <span className="text-sm text-muted-foreground">Order total</span>
+              <p className="mt-1 font-display text-3xl font-semibold text-foreground">
+                ₹{grandTotal.toLocaleString("en-IN")}
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <AnimatedButton href="/work" size="lg" variant="outline">
+                Explore More
+              </AnimatedButton>
+              <AnimatedButton
+                href={`/contact?product=${encodeURIComponent(orderDescription)}#contact-us`}
+                size="lg"
+                variant="primary"
+              >
+                Order
+                <ArrowRight className="h-4 w-4" />
+              </AnimatedButton>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="flex min-h-[78vh] items-center justify-center px-4 pb-20 pt-32 sm:px-6 sm:pt-36 lg:px-8">
       <motion.div

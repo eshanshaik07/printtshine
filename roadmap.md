@@ -10,4 +10,4 @@
 - [x] Add a navigation cart icon and an empty-cart page linking to Works
 - [x] Merge Services content into About and retire the standalone Services page
 - [x] Add product pricing, editable quantity, and live totals to Works photo popups
-- [ ] Add cart persistence, add-to-cart confirmation, editable cart items, and enquiry checkout
+- [x] Add cart persistence, add-to-cart confirmation, editable cart items, and enquiry checkout

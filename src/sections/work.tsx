@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ImageOff, Minus, Plus, X } from "lucide-react";
 import { AnimatedButton } from "@/components/animated-button";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/components/cart-provider";
+import { useNavigate } from "@tanstack/react-router";
 import { FadeIn } from "@/components/fade-in";
 import brandingIdentity from "@/assets/brandidentity.jpeg";
 import giftingCollection from "@/assets/brandmockup.jpeg";
@@ -213,6 +215,8 @@ function ImagePreview({
   label: string;
   onClose: () => void;
 }) {
+  const navigate = useNavigate();
+  const { addItem } = useCart();
   const [quantityInput, setQuantityInput] = useState("1");
   const quantity = Math.max(1, Number.parseInt(quantityInput, 10) || 1);
   const price = productPrices[label] ?? defaultPrice;
@@ -233,11 +237,20 @@ function ImagePreview({
     };
   }, [onClose]);
 
-  const orderDetails = `${label} — Quantity: ${quantity}, Total: ₹${total.toLocaleString("en-IN")}`;
-  const contactHref = `/contact?product=${encodeURIComponent(orderDetails)}#contact`;
-
   const changeQuantity = (amount: number) => {
     setQuantityInput(String(Math.max(1, quantity + amount)));
+  };
+
+  const addToCart = () => {
+    addItem({
+      id: `${item.id}:${label}`,
+      name: label,
+      image: item.image,
+      unitPrice: price.sale,
+      quantity,
+    });
+    onClose();
+    void navigate({ to: "/cart/added" });
   };
 
   return (
@@ -352,7 +365,7 @@ function ImagePreview({
                     ₹{total.toLocaleString("en-IN")}
                   </strong>
                 </div>
-                <AnimatedButton href={contactHref}>Order Now</AnimatedButton>
+                <AnimatedButton onClick={addToCart}>Order Now</AnimatedButton>
               </div>
             </div>
           </div>
